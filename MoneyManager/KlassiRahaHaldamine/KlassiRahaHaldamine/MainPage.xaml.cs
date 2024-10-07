@@ -1,4 +1,5 @@
 ﻿using KlassiRahaHaldamine.Views;
+using KlassiRahaHaldamine.Views.Events;
 using Microsoft.Extensions.Logging;
 
 namespace KlassiRahaHaldamine
@@ -13,10 +14,10 @@ namespace KlassiRahaHaldamine
         }
 
         async void OnStudentsClicked(System.Object sender, System.EventArgs e)
-         => Application.Current.MainPage = new NavigationPage(new Students());
+         => Application.Current.MainPage = new NavigationPage(new StudentsIndex());
 
         async void OnEventsClicked(System.Object sender, System.EventArgs e)
-        => Application.Current.MainPage = new NavigationPage(new Events());
+        => Application.Current.MainPage = new NavigationPage(new EventsIndex());
 
     }
 
