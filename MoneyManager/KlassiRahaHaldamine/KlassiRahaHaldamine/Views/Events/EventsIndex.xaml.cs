@@ -1,11 +1,14 @@
 
+
 using KlassiRahaHaldamine.Data;
 using System.Collections.ObjectModel;
+
 
 namespace KlassiRahaHaldamine.Views.Events;
 
 public partial class EventsIndex : ContentPage
 {
+
     private DatabaseContext _databaseContext;
     public ObservableCollection<Event> Events { get; set; }
     public EventsIndex()
@@ -19,14 +22,14 @@ public partial class EventsIndex : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LoadEvents(); // Värskendab ürituste nimekirja igal korral, kui leht ilmub
+        LoadEvents(); // VÃ¤rskendab Ã¼rituste nimekirja igal korral, kui leht ilmub
     }
     private async void LoadEvents()
     {
         var events = await _databaseContext.GetAllAsync<Event>();
         Events.Clear();
 
-        // Sortige üritused toimumise kuupäeva alusel (kasutame .OrderBy)
+        // Sortige Ã¼ritused toimumise kuupÃ¤eva alusel (kasutame .OrderBy)
         var sortedEvents = events.OrderBy(e => e.EventDate);
 
         foreach (var eventItem in sortedEvents)
@@ -38,7 +41,7 @@ public partial class EventsIndex : ContentPage
     private async void OnCreateEventClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new EventCreate());
-        LoadEvents(); // Värskendab nimekirja pärast uue ürituse loomist
+        LoadEvents(); // VÃ¤rskendab nimekirja pÃ¤rast uue Ã¼rituse loomist
     }
 
     private void OnDetailsClicked(object sender, EventArgs e)
@@ -57,6 +60,7 @@ public partial class EventsIndex : ContentPage
     {
         var eventItem = (Event)((Button)sender).CommandParameter;
         
-        LoadEvents(); // Värskendab nimekirja pärast ürituse kustutamist
+        LoadEvents(); // VÃ¤rskendab nimekirja pÃ¤rast Ã¼rituse kustutamist
     }
 }
+
