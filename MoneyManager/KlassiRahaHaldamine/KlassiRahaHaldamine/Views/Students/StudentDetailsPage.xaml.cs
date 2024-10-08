@@ -1,4 +1,5 @@
 using KlassiRahaHaldamine.Models;
+using System.Globalization;
 
 namespace KlassiRahaHaldamine.Views.Students
 {
@@ -11,7 +12,7 @@ namespace KlassiRahaHaldamine.Views.Students
             // Populate the labels with student data
             FirstNameLabel.Text = student.FirstName;
             LastNameLabel.Text = student.LastName;
-            AmountLabel.Text = student.Amount.ToString("C"); // Format as currency
+            AmountLabel.Text = student.Amount.ToString("C", CultureInfo.GetCultureInfo("fr-FR")); // Format as currency
             ContactNameLabel.Text = student.ContactName;
             ContactNumberLabel.Text = student.ContactNumber;
         }

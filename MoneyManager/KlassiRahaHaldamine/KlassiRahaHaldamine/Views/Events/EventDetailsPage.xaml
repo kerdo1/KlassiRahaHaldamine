@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KlassiRahaHaldamine.Views.Events.EventDetailsPage"
+             Title="Event Details">
+    <ScrollView>
+        <VerticalStackLayout Padding="30">
+            <Label Text="Event Details"
+                   FontSize="32"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Name:"
+                   FontAttributes="Bold" />
+            <Label x:Name="NameLabel" />
+
+            <Label Text="Date:"
+                   FontAttributes="Bold" />
+            <Label x:Name="DateLabel" />
+
+            <Label Text="Description:"
+                   FontAttributes="Bold" />
+            <Label x:Name="DescriptionLabel" />
+
+            <Label Text="Price:"
+                   FontAttributes="Bold" />
+            <Label x:Name="PriceLabel" />
+
+            <!-- Add a Back button -->
+            <Button Text="Back"
+                    HorizontalOptions="Center"
+                    Clicked="OnBackButtonClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

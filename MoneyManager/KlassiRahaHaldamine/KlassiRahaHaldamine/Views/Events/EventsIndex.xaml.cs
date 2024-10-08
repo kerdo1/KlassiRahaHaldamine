@@ -47,11 +47,15 @@ namespace KlassiRahaHaldamine.Views.Events
             LoadEvents(); // Refresh the list after creating a new event
         }
 
-        private void OnDetailsClicked(object sender, EventArgs e)
+        private async void OnDetailsClicked(object sender, EventArgs e)
         {
-            var eventItem = (Event)((Button)sender).CommandParameter;
-            // Open detail view
+            var button = (Button)sender;
+            var eventItem = (Event)button.CommandParameter; // Get the selected event object
+
+            // Navigate to the EventDetailsPage and pass the event object
+            await Navigation.PushAsync(new EventDetailsPage(eventItem));
         }
+
 
         private void OnEditClicked(object sender, EventArgs e)
         {

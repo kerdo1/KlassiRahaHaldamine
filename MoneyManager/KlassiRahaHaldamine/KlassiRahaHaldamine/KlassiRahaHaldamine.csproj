@@ -71,9 +71,17 @@
 
 	<ItemGroup>
 
+	  <MauiXaml Update="Views\Events\EventDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+
 	  <MauiXaml Update="Views\Students\CreateUpdateStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+
+	  <Compile Update="Views\Events\EventDetailsPage.xaml.cs">
+	    <DependentUpon>EventDetailsPage.xaml</DependentUpon>
+	  </Compile>
 
 	  <Compile Update="Views\Students\StudentsIndex.xaml.cs">
 	    <DependentUpon>StudentsIndex.xaml</DependentUpon>
