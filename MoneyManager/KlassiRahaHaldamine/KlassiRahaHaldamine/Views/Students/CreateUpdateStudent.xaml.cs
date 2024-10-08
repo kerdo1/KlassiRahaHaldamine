@@ -10,6 +10,10 @@ public partial class CreateUpdateStudent : ContentPage
 	{
 		InitializeComponent();
 	}
+    private async void OnBackEventClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MainPage());
+    }
 
     private async void OnSaveStudentClicked(object sender, EventArgs e)
     {

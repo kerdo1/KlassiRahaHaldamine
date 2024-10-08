@@ -7,34 +7,35 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="20">
+            <Grid>
 
+                <Button Grid.Column="0"
+                    Text="Tagasi"
+                    HorizontalOptions="Start"
+                    Clicked="OnBackEventClicked"/>
+                <Button Grid.Column="1" 
+                    Text="Lisa õpilane" 
+                    HorizontalOptions="End"
+                    Clicked="OnCreateStudentClicked" />
 
-            <Button 
-                Text="Lisa õpilane" 
-                HorizontalOptions="Start"
-                Clicked="OnCreateStudentClicked" />
-
-            <!-- Students CollectionView -->
+                </Grid>
+         
             <CollectionView 
                 x:Name="StudentsCollectionView"
                 ItemsSource="{Binding Students}"
                 SelectionMode="None"
                 EmptyView="No students available.">
 
-                <!-- Student Item Template -->
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10" ColumnSpacing="20">
 
-                            <!-- Define Columns -->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <!-- For labels -->
                                 <ColumnDefinition Width="Auto" />
-                                <!-- For buttons -->
                             </Grid.ColumnDefinitions>
 
-                            <!-- Labels (Aligned Left) -->
                             <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
                                 <Label Text="{Binding FirstName}" 
                                        FontAttributes="Bold" 
@@ -48,10 +49,9 @@
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
 
-                                
-                            </StackLayout>
 
-                            <!-- Action Buttons (Aligned Right) -->
+                            </StackLayout>
+                            
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
                                 <Frame x:Name="WalletFrame"                                 
                                        BorderColor="Black"
