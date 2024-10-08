@@ -8,80 +8,35 @@ using System.Threading.Tasks;
 
 namespace KlassiRahaHaldamine.Data
 {
-    internal class DatabaseContext : IAsyncDisposable
+    public class DatabaseContext : IAsyncDisposable
     {
         private const string DbName = "KlassiRahaHaldamine.db";
-        private static string DbPath => Path.Combine(".", DbName);
+        private static string DbPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DbName);
 
         private SQLiteAsyncConnection _connection;
-        private SQLiteAsyncConnection Database =>
-            (_connection ??= new SQLiteAsyncConnection(DbPath,
-                SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache));
 
         public DatabaseContext()
         {
             _connection = new SQLiteAsyncConnection(DbPath);
         }
 
-
-        public async Task<IEnumerable<TTable>> GetAllAsync<TTable>() where TTable : class, new()
+        public async Task CreateTableIfNotExistsAsync<T>() where T : class, new()
         {
-            var table = await GetTableAsync<TTable>();
-            return await table.ToListAsync();
+            await _connection.CreateTableAsync<T>();
         }
 
-        private async Task<AsyncTableQuery<TTable>> GetTableAsync<TTable>() where TTable : class, new()
+        public async Task<bool> AddItemAsync<T>(T item) where T : class, new()
         {
-            await CreateTableIfNotExists<TTable>();
-            return Database.Table<TTable>();
+            await CreateTableIfNotExistsAsync<T>();
+            return await _connection.InsertAsync(item) > 0;
         }
 
-        private async Task CreateTableIfNotExists<TTable>() where TTable : class, new()
+        public async Task<IEnumerable<T>> GetAllAsync<T>() where T : class, new()
         {
-            await Database.CreateTableAsync<TTable>();
+            await CreateTableIfNotExistsAsync<T>();
+            return await _connection.Table<T>().ToListAsync();
         }
 
-        private async Task<TResult> Execute<TTable, TResult>(Func<Task<TResult>> action) where TTable : class, new()
-        {
-            await CreateTableIfNotExists<TTable>();
-            return await action();
-        }
-
-        public async Task<TTable> GetItemByKeyAsync<TTable>(object primaryKey) where TTable : class, new()
-        {
-
-            return await Execute<TTable, TTable>(async () => await Database.GetAsync<TTable>(primaryKey));
-        }
-
-        public async Task<bool> AddItemAsync<TTable>(TTable item) where TTable : class, new()
-        {
-            return await Execute<TTable, bool>(async () => await Database.InsertAsync(item) > 0);
-        }
-
-        public async Task<bool> UpdateItemAsync<TTable>(TTable item) where TTable : class, new()
-        {
-            await CreateTableIfNotExists<TTable>();
-            return await Database.UpdateAsync(item) > 0;
-        }
-
-        public async Task<bool> DeleteItemAsync<TTable>(TTable item) where TTable : class, new()
-        {
-            await CreateTableIfNotExists<TTable>();
-            return await Database.DeleteAsync(item) > 0;
-        }
-
-        public async Task<bool> DeleteItemByKeyAsync<TTable>(object primaryKey) where TTable : class, new()
-        {
-            await CreateTableIfNotExists<TTable>();
-            return await Database.DeleteAsync<TTable>(primaryKey) > 0;
-        }
-
-        public async ValueTask DisposeAsync() => await _connection?.CloseAsync();
-
-        public async Task<IEnumerable<TTable>> GetFileteredAsync<TTable>(Expression<Func<TTable, bool>> predicate) where TTable : class, new()
-        {
-            var table = await GetTableAsync<TTable>();
-            return await table.Where(predicate).ToListAsync();
-        }
+        public async ValueTask DisposeAsync() => await _connection.CloseAsync();
     }
 }

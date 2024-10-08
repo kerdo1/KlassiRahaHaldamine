@@ -16,8 +16,6 @@ namespace KlassiRahaHaldamine.Models
         public double Amount { get; set; }
         public string ContactName { get; set; }
         public int ContactNumber { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime ModifiedAt { get; set; }
 
         public Student()
         {

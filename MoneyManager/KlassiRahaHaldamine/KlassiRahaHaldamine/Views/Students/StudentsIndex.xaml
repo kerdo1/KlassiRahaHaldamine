@@ -13,6 +13,7 @@
             <Button 
                 Text="Lisa õpilane" 
                 HorizontalOptions="Center"
+                Clicked="OnCreateStudentClicked"
                />
 
             <!-- Ürituste nimekiri -->
