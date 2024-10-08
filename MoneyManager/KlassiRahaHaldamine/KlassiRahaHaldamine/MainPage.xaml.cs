@@ -1,25 +1,25 @@
-﻿namespace KlassiRahaHaldamine
+﻿using KlassiRahaHaldamine.Views;
+using KlassiRahaHaldamine.Views.Events;
+using KlassiRahaHaldamine.Views.Students;
+using Microsoft.Extensions.Logging;
+
+namespace KlassiRahaHaldamine
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
+        async void OnStudentsClicked(System.Object sender, System.EventArgs e)
+         => Application.Current.MainPage = new NavigationPage(new StudentsIndex());
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        async void OnEventsClicked(System.Object sender, System.EventArgs e)
+        => Application.Current.MainPage = new NavigationPage(new EventsIndex());
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
     }
 
 }
