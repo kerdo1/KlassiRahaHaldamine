@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:KlassiRahaHaldamine.Converters"
              x:Class="KlassiRahaHaldamine.Views.Events.EventsIndex"
              Title="Üritused">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EventDateToColorConverter x:Key="EventDateToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
@@ -17,18 +25,19 @@
 
             <!-- Ürituste nimekiri -->
             <ListView x:Name="EventsListView" 
-                          ItemsSource="{Binding Events}"
-                          HasUnevenRows="True">
+                      ItemsSource="{Binding Events}"
+                      HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical" Padding="10">
-                                <!-- Ürituse nimi -->
+                                <!-- Ürituse nimi koos konverteriga -->
                                 <Label Text="{Binding Name}" 
-                                           FontAttributes="Bold" 
-                                           FontSize="Medium" 
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="CenterAndExpand" />
+                                       FontAttributes="Bold" 
+                                       FontSize="Medium" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="CenterAndExpand"
+                                       TextColor="{Binding EventDate, Converter={StaticResource EventDateToColorConverter}}" />
 
                                 <!-- Nupud: Detailid, Muuda, Kustuta -->
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">

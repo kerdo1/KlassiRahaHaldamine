@@ -5,7 +5,7 @@ namespace KlassiRahaHaldamine.Views.Events;
 
 public partial class EventCreate : ContentPage
 {
-	public EventCreate()
+    public EventCreate()
     {
         InitializeComponent();
     }
