@@ -45,6 +45,14 @@ public partial class StudentsIndex : ContentPage
         await Navigation.PushAsync(new CreateUpdateStudent());
         LoadStudents(); 
     }
+    private async void OnDetailsClicked(object sender, EventArgs e)
+    {
+        var button = (Button)sender;
+        var student = (Student)button.CommandParameter; // Get the selected student object
+
+        // Navigate to the StudentDetailsPage and pass the student object
+        await Navigation.PushAsync(new StudentDetailsPage(student));
+    }
 
 
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-
              x:Class="KlassiRahaHaldamine.Views.Students.StudentsIndex"
              Title="">
     <ScrollView>
@@ -18,12 +17,11 @@
             <Button 
                 Text="Lisa õpilane" 
                 HorizontalOptions="Center"
-                Clicked="OnCreateStudentClicked"
-               />
+                Clicked="OnCreateStudentClicked" />
 
             <ListView x:Name="StudentsListView" 
-                          ItemsSource="{Binding Students}"
-                          HasUnevenRows="True">
+                      ItemsSource="{Binding Students}"
+                      HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -46,13 +44,10 @@
                                            HorizontalOptions="CenterAndExpand" />
                                 </HorizontalStackLayout>
 
-                                
-
-                                <!-- Nupud: Detailid, Muuda, Kustuta -->
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                    <Button Text="Detailid"   />
-                                    <Button Text="Muuda"   />
-                                    <Button Text="Kustuta"  />
+                                    <Button Text="Detailid" CommandParameter="{Binding .}" Clicked="OnDetailsClicked" />
+                                    <Button Text="Muuda" />
+                                    <Button Text="Kustuta" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -61,5 +56,4 @@
             </ListView>
         </VerticalStackLayout>
     </ScrollView>
-    
 </ContentPage>
