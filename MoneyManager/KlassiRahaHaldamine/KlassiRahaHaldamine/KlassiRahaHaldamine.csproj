@@ -70,15 +70,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Events\EventsIndex.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+
 	  <MauiXaml Update="Views\Students\CreateUpdateStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Students\StudentsIndex.xaml">
+
+	  <Compile Update="Views\Students\StudentsIndex.xaml.cs">
+	    <DependentUpon>StudentsIndex.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\Events\EventCreate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Events\EventsIndex.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+ 
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>

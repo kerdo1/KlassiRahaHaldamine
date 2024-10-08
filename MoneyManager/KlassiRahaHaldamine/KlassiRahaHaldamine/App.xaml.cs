@@ -4,6 +4,9 @@ using Microsoft.UI.Windowing;
 using Windows.Graphics;
 #endif
 
+using Microsoft.EntityFrameworkCore;
+using KlassiRahaHaldamine.Data;
+
 namespace KlassiRahaHaldamine
 {
     public partial class App : Application

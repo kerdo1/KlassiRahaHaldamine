@@ -1,3 +1,4 @@
+
 using KlassiRahaHaldamine.Data;
 using KlassiRahaHaldamine.Models;
 using System.Collections.ObjectModel;
@@ -37,4 +38,6 @@ public partial class StudentsIndex : ContentPage
         await Navigation.PushAsync(new CreateUpdateStudent());
         LoadStudents(); 
     }
+
+
 }
