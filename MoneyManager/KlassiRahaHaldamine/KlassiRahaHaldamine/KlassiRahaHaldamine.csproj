@@ -87,11 +87,12 @@
 	  <MauiXaml Update="Views\Events\EventsIndex.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
- 
-	</ItemGroup>
+	  <MauiXaml Update="Views\Students\CreateUpdateStudent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+    <Folder Include="Services\" />
+   	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Services\" />
-	</ItemGroup>
+
 
 </Project>

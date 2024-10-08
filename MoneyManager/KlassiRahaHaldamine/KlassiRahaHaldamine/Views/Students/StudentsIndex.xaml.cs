@@ -33,6 +33,13 @@ public partial class StudentsIndex : ContentPage
             Students.Add(studentItem);
         }
     }
+
+    private async void OnBackEventClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MainPage());
+    }
+
+
     private async void OnCreateStudentClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new CreateUpdateStudent());

@@ -14,16 +14,16 @@ public partial class CreateUpdateStudent : ContentPage
     private async void OnSaveStudentClicked(object sender, EventArgs e)
     {
         int.TryParse(AmountEntry.Text, out int amount);
-        int.TryParse(ContactNumber.Text, out int contactNumber);
+        int.TryParse(ContactNumberEntry.Text, out int contactNumber);
 
-        // Loo uus EventModel objekt ja t‰ida see andmetega
+        // Loo uus EventModel objekt ja t√§ida see andmetega
         var newStudent = new Student
         {
             FirstName = FirstNameEntry.Text,
             LastName = LastNameEntry.Text,
             Amount = amount,
             ContactName = ContactNameEntry.Text,
-            ContactNumber = contactNumber
+            ContactNumber = contactNumber.ToString()
         };
 
         var databaseContext = new DatabaseContext();

@@ -3,13 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:KlassiRahaHaldamine.Models"
              x:Class="KlassiRahaHaldamine.Views.Students.CreateUpdateStudent"
-             Title="CreateUpdateStudent">
-    <VerticalStackLayout>
-        <Entry x:Name="FirstNameEntry" Placeholder="Eesnimi" />
-        <Entry x:Name="LastNameEntry" Placeholder="Perekonnanimi" />
-        <Entry x:Name="AmountEntry" Placeholder="Summa" />
-        <Entry x:Name="ContactNameEntry" Placeholder="Kontakt" />
-        <Entry x:Name="ContactNumber" Placeholder="Kontakt telefon" />
-        <Button Text="Salvesta" Clicked="OnSaveStudentClicked"/>
+             Title="Add or Update Student">
+
+    <VerticalStackLayout Padding="20">
+        <Label Text="First Name" />
+        <Entry x:Name="FirstNameEntry" Placeholder="Enter First Name" />
+
+        <Label Text="Last Name" />
+        <Entry x:Name="LastNameEntry" Placeholder="Enter Last Name" />
+
+        <Label Text="Amount" />
+        <Entry x:Name="AmountEntry" Placeholder="Enter Amount" Keyboard="Numeric" />
+
+        <Label Text="Contact Name" />
+        <Entry x:Name="ContactNameEntry" Placeholder="Enter Contact Name" />
+
+        <Label Text="Contact Number" />
+        <Entry x:Name="ContactNumberEntry" Placeholder="Enter Contact Number" Keyboard="Telephone" />
+
+        <Button Text="Save" Clicked="OnSaveStudentClicked" BackgroundColor="LightGreen" />
     </VerticalStackLayout>
+
 </ContentPage>
+
