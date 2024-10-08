@@ -15,16 +15,16 @@ public partial class EventsIndex : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LoadEvents(); // Värskendab ürituste nimekirja igal korral, kui leht ilmub
+        LoadEvents(); // Refresh the list after creating a new event
     }
     private async void LoadEvents()
     {
         var events = await _databaseContext.GetAllAsync<Event>();
 
-        // Sorteeri tulevased ja möödunud üritused
+        // Sort events by event date
         var sortedEvents = events
-            .OrderBy(e => e.EventDate < DateTime.Now) // Möödunud üritused liiguvad lõppu
-            .ThenBy(e => e.EventDate); // Tulevased üritused kuvatakse kuupäeva järgi
+            .OrderBy(e => e.EventDate < DateTime.Now) // Past events move to the end
+            .ThenBy(e => e.EventDate); // Upcoming events will be displayed by date
 
         Events.Clear();
         foreach (var eventItem in sortedEvents)
@@ -33,25 +33,30 @@ public partial class EventsIndex : ContentPage
         }
     }
 
+    private async void OnBackEventClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MainPage());
+    }
+
     private async void OnCreateEventClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new EventCreate());
-        LoadEvents(); // Värskendab nimekirja pärast uue ürituse loomist
+        LoadEvents(); // Refreshes the event list every time the page appears
     }
     private void OnDetailsClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;
-        // Ava detailvaade
+        // Open detail view
     }
     private void OnEditClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;
-        // Ava muutmisvaade
+        // Open edit view
     }
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;
-
-        LoadEvents(); // Värskendab nimekirja pärast ürituse kustutamist
+        await Navigation.PushAsync(new EventDelete(eventItem));
+        LoadEvents(); // Refresh the list after deleting an event
     }
 }

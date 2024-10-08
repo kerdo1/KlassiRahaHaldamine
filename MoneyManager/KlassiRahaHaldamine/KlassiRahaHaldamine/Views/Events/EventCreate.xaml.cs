@@ -12,10 +12,10 @@ public partial class EventCreate : ContentPage
 
     private async void OnSaveEventClicked(object sender, EventArgs e)
     {
-        // Muuda hind tekstiväljalt numbriks (int) ja veendu, et see on kehtiv
+        // Change the price from text box to number (int) and make sure it's valid
         int.TryParse(EventPrice.Text, out int eventPrice);
 
-        // Loo uus EventModel objekt ja täida see andmetega
+        // Create a new EventModel object and fill it with data
         var newEvent = new Event
         {
             Name = NameEntry.Text,
@@ -24,13 +24,13 @@ public partial class EventCreate : ContentPage
             Price = eventPrice
         };
 
-        // Andmebaasi konteksti instantsi loomine
+        // Create a database context instance
         var databaseContext = new DatabaseContext();
 
-        // Salvestame andmed andmebaasi
+        // Save data to database
         await databaseContext.AddItemAsync(newEvent);
 
-        // Tagasi ürituste loendisse
+        // Back to event list
         await Navigation.PopAsync();
     }
 }

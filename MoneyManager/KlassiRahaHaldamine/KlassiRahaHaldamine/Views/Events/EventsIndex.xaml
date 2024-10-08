@@ -17,13 +17,16 @@
             Margin="0,50,0,0"
             Spacing="25">
 
-            <!-- Ürituse loomise nupp -->
+            <Button
+                Text="Tagasi"
+                HorizontalOptions="Start"
+                Clicked="OnBackEventClicked"/>
+
             <Button 
                 Text="Loo uus üritus" 
                 HorizontalOptions="Center"
                 Clicked="OnCreateEventClicked"/>
 
-            <!-- Ürituste nimekiri -->
             <ListView x:Name="EventsListView" 
                       ItemsSource="{Binding Events}"
                       HasUnevenRows="True">
@@ -31,15 +34,12 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical" Padding="10">
-                                <!-- Ürituse nimi koos konverteriga -->
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold" 
                                        FontSize="Medium" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="CenterAndExpand"
                                        TextColor="{Binding EventDate, Converter={StaticResource EventDateToColorConverter}}" />
-
-                                <!-- Nupud: Detailid, Muuda, Kustuta -->
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                     <Button Text="Detailid" Clicked="OnDetailsClicked" CommandParameter="{Binding .}" />
                                     <Button Text="Muuda" Clicked="OnEditClicked" CommandParameter="{Binding .}" />
@@ -53,3 +53,4 @@
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+    
