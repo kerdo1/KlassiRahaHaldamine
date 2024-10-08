@@ -56,7 +56,7 @@ public partial class EventsIndex : ContentPage
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;
-
+        await Navigation.PushAsync(new EventDelete(eventItem));
         LoadEvents(); // Refresh the list after deleting an event
     }
 }

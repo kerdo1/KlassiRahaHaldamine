@@ -41,6 +41,10 @@ namespace KlassiRahaHaldamine.Data
             await CreateTableIfNotExistsAsync<T>();
             return await _connection.Table<T>().ToListAsync();
         }
+        public async Task<bool> DeleteItemAsync<T>(T item) where T : class, new()
+        {
+            return await _connection.DeleteAsync(item) > 0;
+        }
 
         public async ValueTask DisposeAsync() => await _connection.CloseAsync();
     }

@@ -2,13 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KlassiRahaHaldamine.Views.Events.EventCreate"
-             Title="Loo uus üritus">
+             Title="Lisa üritus">
     <VerticalStackLayout Padding="20" Spacing="15">
         <Entry x:Name="NameEntry" Placeholder="Ürituse nimi" />
         <DatePicker x:Name="EventDatePicker" />
         <Entry x:Name="DescriptionEntry" Placeholder="Ürituse kirjeldus" />
         <Entry x:Name="EventPrice" Placeholder="Ürituse hind" />
-        <!-- Lisa rohkem välju vastavalt vajadusele -->
         <Button Text="Salvesta" Clicked="OnSaveEventClicked"/>
     </VerticalStackLayout>
 </ContentPage>
