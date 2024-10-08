@@ -8,10 +8,14 @@
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="20">
 
+            <Button
+                Text="Tagasi"
+                HorizontalOptions="Start"
+                Clicked="OnBackEventClicked"/>
 
             <Button 
                 Text="Lisa õpilane" 
-                HorizontalOptions="Start"
+                HorizontalOptions="Center"
                 Clicked="OnCreateStudentClicked" />
 
             <!-- Students CollectionView -->
