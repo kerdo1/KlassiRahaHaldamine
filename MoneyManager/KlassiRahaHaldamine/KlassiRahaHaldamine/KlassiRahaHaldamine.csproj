@@ -71,6 +71,10 @@
 
 	<ItemGroup>
 
+	  <MauiXaml Update="Views\Events\EventsCreateUpdate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+
 	  <MauiXaml Update="Views\Students\CreateUpdateStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

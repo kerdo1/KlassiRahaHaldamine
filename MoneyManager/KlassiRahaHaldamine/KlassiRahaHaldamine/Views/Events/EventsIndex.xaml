@@ -15,7 +15,7 @@
                 Text="Loo uus üritus" 
                 HorizontalOptions="Center"
                 Clicked="OnCreateEventClicked"/>
-
+ 
             <!-- Ürituste nimekiri -->
             <ListView x:Name="EventsListView" 
                           ItemsSource="{Binding Events}"

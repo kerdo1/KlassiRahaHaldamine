@@ -50,12 +50,16 @@ public partial class EventsIndex : ContentPage
         // Ava detailvaade
     }
 
-    private void OnEditClicked(object sender, EventArgs e)
+    private async void OnEditClicked(object sender, EventArgs e)
     {
-        var eventItem = (Event)((Button)sender).CommandParameter;
+        //var eventItem = (Event)((Button)sender).CommandParameter;
         // Ava muutmisvaade
+        //await Navigation.PushAsync(new EventsCreateUpdate());
+        var button = (Button)sender;
+        var eventItem = (Event)button.CommandParameter;
+        await Navigation.PushAsync(new EventsCreateUpdate(eventItem));
     }
-
+    
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;

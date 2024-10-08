@@ -9,6 +9,10 @@ using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SQLite;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 namespace KlassiRahaHaldamine.Data
@@ -43,5 +47,12 @@ namespace KlassiRahaHaldamine.Data
         }
 
         public async ValueTask DisposeAsync() => await _connection.CloseAsync();
+
+        public async Task<bool> UpdateItemAsync<T>(T item) where T : class, new()
+        {
+            await CreateTableIfNotExistsAsync<T>();
+            return await _connection.UpdateAsync(item) > 0;
+        }
+
     }
 }
