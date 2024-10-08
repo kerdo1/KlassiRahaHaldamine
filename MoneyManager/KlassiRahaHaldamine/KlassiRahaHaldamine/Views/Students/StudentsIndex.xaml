@@ -10,6 +10,11 @@
             Margin="0,50,0,0"
             Spacing="25">
 
+            <Button
+                Text="Tagasi"
+                HorizontalOptions="Start"
+                Clicked="OnBackEventClicked"/>
+
             <Button 
                 Text="Lisa õpilane" 
                 HorizontalOptions="Center"

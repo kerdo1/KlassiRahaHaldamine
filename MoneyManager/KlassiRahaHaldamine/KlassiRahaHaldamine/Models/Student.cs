@@ -1,4 +1,5 @@
-﻿namespace KlassiRahaHaldamine.Models
+﻿
+namespace KlassiRahaHaldamine.Models
 {
     public class Student
     {
