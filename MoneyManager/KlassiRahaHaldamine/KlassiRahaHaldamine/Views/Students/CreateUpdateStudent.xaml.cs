@@ -6,17 +6,16 @@ namespace KlassiRahaHaldamine.Views.Students;
 
 public partial class CreateUpdateStudent : ContentPage
 {
-	public CreateUpdateStudent()
-	{
-		InitializeComponent();
-	}
+    public CreateUpdateStudent()
+    {
+        InitializeComponent();
+    }
 
     private async void OnSaveStudentClicked(object sender, EventArgs e)
     {
         int.TryParse(AmountEntry.Text, out int amount);
         int.TryParse(ContactNumberEntry.Text, out int contactNumber);
 
-        // Loo uus EventModel objekt ja täida see andmetega
         var newStudent = new Student
         {
             FirstName = FirstNameEntry.Text,

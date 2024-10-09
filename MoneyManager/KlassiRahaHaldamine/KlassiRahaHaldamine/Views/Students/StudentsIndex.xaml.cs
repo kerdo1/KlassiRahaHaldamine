@@ -10,8 +10,8 @@ public partial class StudentsIndex : ContentPage
     private DatabaseContext _databaseContext;
     public ObservableCollection<Student> Students { get; set; }
     public StudentsIndex()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _databaseContext = new DatabaseContext();
         Students = new ObservableCollection<Student>();
         BindingContext = this;
@@ -43,8 +43,13 @@ public partial class StudentsIndex : ContentPage
     private async void OnCreateStudentClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new CreateUpdateStudent());
-        LoadStudents(); 
+        LoadStudents();
     }
-
+    private async void OnDeleteClicked(object sender, EventArgs e)
+    {
+        var studentItem = (Student)((Button)sender).CommandParameter;
+        await Navigation.PushAsync(new StudentDelete(studentItem));
+        LoadStudents(); // Refresh the list after deleting a student
+    }
 
 }

@@ -42,17 +42,17 @@
                             <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
                                 <Label Text="{Binding FirstName}" 
                                        FontAttributes="Bold" 
-                                       FontSize="Medium" 
+                                       FontSize="Small" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
 
                                 <Label Text="{Binding LastName}" 
                                        FontAttributes="Bold" 
-                                       FontSize="Medium" 
+                                       FontSize="Small" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
 
-                                
+
                             </StackLayout>
 
                             <!-- Action Buttons (Aligned Right) -->
@@ -67,7 +67,7 @@
                                            VerticalOptions="Center" 
         />
                                 </Frame>
-                                
+
                                 <Button Text="ℹ️" 
                                         
                                         CornerRadius="4" 
@@ -83,11 +83,11 @@
                                         TextColor="White" />
 
                                 <Button Text="🗑️" 
-                                        
                                         CornerRadius="4" 
                                         Padding="5,3" 
-                                       
-                                        TextColor="White" />
+                                        TextColor="White"
+                                        Clicked="OnDeleteClicked"
+                                        CommandParameter="{Binding .}"/>
                             </StackLayout>
                         </Grid>
                     </DataTemplate>
@@ -95,5 +95,6 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
-    
+
 </ContentPage>
+    

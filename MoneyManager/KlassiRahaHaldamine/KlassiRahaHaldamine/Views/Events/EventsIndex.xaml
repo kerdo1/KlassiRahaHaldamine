@@ -23,7 +23,7 @@
                 Clicked="OnBackEventClicked"/>
 
             <Button 
-                Text="Loo uus üritus" 
+                Text="Lisa üritus" 
                 HorizontalOptions="Center"
                 Clicked="OnCreateEventClicked"/>
 
