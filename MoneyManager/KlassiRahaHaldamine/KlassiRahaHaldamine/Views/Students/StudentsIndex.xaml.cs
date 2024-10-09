@@ -35,7 +35,7 @@ public partial class StudentsIndex : ContentPage
     }
 
     private async void OnBackEventClicked(object sender, EventArgs e)
-    {
+    {      
         await Navigation.PushAsync(new MainPage());
     }
 
@@ -61,4 +61,5 @@ public partial class StudentsIndex : ContentPage
         var studentItem = (Student)((Button)sender).CommandParameter;
         // Open edit view
     }
+    
 }

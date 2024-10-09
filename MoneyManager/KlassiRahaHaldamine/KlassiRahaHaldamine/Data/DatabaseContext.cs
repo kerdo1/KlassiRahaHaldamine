@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SQLite;
+using KlassiRahaHaldamine.Models;
 
 
 namespace KlassiRahaHaldamine.Data
