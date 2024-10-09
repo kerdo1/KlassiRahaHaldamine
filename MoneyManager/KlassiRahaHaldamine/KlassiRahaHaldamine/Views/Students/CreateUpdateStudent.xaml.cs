@@ -20,7 +20,6 @@ public partial class CreateUpdateStudent : ContentPage
         int.TryParse(AmountEntry.Text, out int amount);
         int.TryParse(ContactNumberEntry.Text, out int contactNumber);
 
-        // Loo uus EventModel objekt ja täida see andmetega
         var newStudent = new Student
         {
             FirstName = FirstNameEntry.Text,
