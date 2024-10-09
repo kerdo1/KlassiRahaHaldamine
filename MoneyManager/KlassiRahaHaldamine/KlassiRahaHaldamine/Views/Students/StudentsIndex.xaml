@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 
              x:Class="KlassiRahaHaldamine.Views.Students.StudentsIndex"
-             Title="Students">
+             Title="Õpilased">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="30" >
@@ -31,7 +31,7 @@
                 x:Name="StudentsCollectionView"
                 ItemsSource="{Binding Students}"
                 SelectionMode="None"
-                EmptyView="No students available.">
+                EmptyView="Õpilasi ei ole.">
 
 
                 <CollectionView.ItemTemplate>
@@ -47,22 +47,25 @@
                                 <Frame x:Name="WalletFrame"                                 
                                        BorderColor="#2D4D3A"
                                        CornerRadius="4"
-                                       Padding="5,3">
+                                       Padding="5,3"
+                                       WidthRequest="44" 
+                                       HeightRequest="40">
                                     <Label Text="{Binding Amount}" 
                                            TextColor="#2D4D3A"
                                            FontAttributes="Bold" 
-                                           FontSize="Medium" 
+                                           FontSize="Small" 
+                                           HorizontalOptions="End"
                                            VerticalOptions="Center" />
                                 </Frame>
                                 <Label Text="{Binding FirstName}" 
                                        FontAttributes="Bold" 
-                                       FontSize="Small" 
+                                       FontSize="Micro" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
 
                                 <Label Text="{Binding LastName}" 
                                        FontAttributes="Bold" 
-                                       FontSize="Small" 
+                                       FontSize="Micro" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
                             </StackLayout>

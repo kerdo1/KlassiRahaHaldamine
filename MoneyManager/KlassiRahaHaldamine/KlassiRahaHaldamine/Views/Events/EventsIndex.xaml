@@ -34,34 +34,37 @@
             <CollectionView x:Name="EventsCollectionView"
                             ItemsSource="{Binding Events}"
                             SelectionMode="None"
-                            EmptyView="No events available.">
+                            EmptyView="Üritusi ei ole.">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="0,0,0,10" ColumnSpacing="20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
-                                
-                                <Label Text="{Binding Name}" 
-                                       FontAttributes="Bold" 
-                                       FontSize="Medium" 
-                                       VerticalOptions="Center" 
-                                       HorizontalOptions="CenterAndExpand" />
-
-
-                            </StackLayout>
-                            <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" >
                                 <Frame x:Name="WalletFrame"                                 
                                        BorderColor="#2D4D3A"
                                        CornerRadius="4"
-                                       Padding="5,3">
+                                       Padding="5,3"
+                                       WidthRequest="55" 
+                                       HeightRequest="40">
                                     <Label Text="{Binding Price}"                              
                                            FontAttributes="Bold" 
-                                           FontSize="Medium" 
+                                           FontSize="Small"
+                                           HorizontalOptions="Start"
                                            VerticalOptions="Center" />
                                 </Frame>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="End" >
+                                <Label Text="{Binding Name}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Small" 
+                                       VerticalOptions="Center"
+                                       TextColor="{Binding EventDate, Converter={StaticResource EventDateToColorConverter}}" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
+                                
                                 <Button Text="?"
                                         FontSize="Medium"
                                         CornerRadius="4"

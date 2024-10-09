@@ -5,7 +5,7 @@
              x:Class="KlassiRahaHaldamine.Views.Students.CreateUpdateStudent"
              Title="Lisa Õpilane">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <VerticalStackLayout Padding="20" Spacing="10">
 
         <Button Grid.Column="0"
                 Text="↩"
