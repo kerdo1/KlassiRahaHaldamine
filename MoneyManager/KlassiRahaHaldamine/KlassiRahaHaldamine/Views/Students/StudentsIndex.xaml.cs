@@ -61,13 +61,4 @@ public partial class StudentsIndex : ContentPage
         var studentItem = (Student)((Button)sender).CommandParameter;
         // Open edit view
     }
-    private async void OnDeleteClicked(object sender, EventArgs e)
-    {
-        var studentItem = (Student)((Button)sender).CommandParameter;
-
-        // Implement delete logic here (e.g., await _databaseContext.DeleteAsync(eventItem);)
-
-        LoadStudents(); // Refresh the list after deleting an event
-    }
-
 }
