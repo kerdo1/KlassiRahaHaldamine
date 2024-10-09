@@ -6,9 +6,13 @@ namespace KlassiRahaHaldamine.Views.Students;
 
 public partial class CreateUpdateStudent : ContentPage
 {
-    public CreateUpdateStudent()
+	public CreateUpdateStudent()
+	{
+		InitializeComponent();
+	}
+    private async void OnBackEventClicked(object sender, EventArgs e)
     {
-        InitializeComponent();
+        await Navigation.PushAsync(new MainPage());
     }
 
     private async void OnSaveStudentClicked(object sender, EventArgs e)

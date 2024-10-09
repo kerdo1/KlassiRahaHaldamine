@@ -12,44 +12,69 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Margin="0,50,0,0"
-            Spacing="25">
-
-            <Button
-                Text="Tagasi"
-                HorizontalOptions="Start"
-                Clicked="OnBackEventClicked"/>
-
-            <Button 
-                Text="Lisa üritus" 
-                HorizontalOptions="Center"
-                Clicked="OnCreateEventClicked"/>
-
-            <ListView x:Name="EventsListView" 
-                      ItemsSource="{Binding Events}"
-                      HasUnevenRows="True">
-                <ListView.ItemTemplate>
+        <VerticalStackLayout Padding="10" Spacing="20">
+            <Grid>
+                <Button Grid.Column="0"
+                        Text="Tagasi"
+                        HorizontalOptions="Start"
+                        Clicked="OnBackEventClicked"/>
+                <Button Grid.Column="1" 
+                        Text="Loo uus üritus" 
+                        HorizontalOptions="End"
+                        Clicked="OnCreateEventClicked" />
+            </Grid>
+            <CollectionView x:Name="EventsCollectionView"
+                            ItemsSource="{Binding Events}"
+                            SelectionMode="None"
+                            EmptyView="No events available.">
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
+                        <Grid Padding="10" ColumnSpacing="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
+                                
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold" 
                                        FontSize="Medium" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="CenterAndExpand"
-                                       TextColor="{Binding EventDate, Converter={StaticResource EventDateToColorConverter}}" />
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                    <Button Text="Detailid" Clicked="OnDetailsClicked" CommandParameter="{Binding .}" />
-                                    <Button Text="Muuda" Clicked="OnEditClicked" CommandParameter="{Binding .}" />
-                                    <Button Text="Kustuta" Clicked="OnDeleteClicked" CommandParameter="{Binding .}" />
-                                </StackLayout>
+                                       HorizontalOptions="CenterAndExpand" />
+
+
                             </StackLayout>
-                        </ViewCell>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
+                                <Frame x:Name="WalletFrame"                                 
+                                       BorderColor="Black"
+                                       CornerRadius="4"
+                                       Padding="5,3">
+                                    <Label Text="{Binding Price}"                              
+                                           FontAttributes="Bold" 
+                                           FontSize="Medium" 
+                                           VerticalOptions="Center" />
+                                </Frame>
+                                <Button Text="?"
+                                        FontSize="Medium"
+                                        CornerRadius="4"
+                                        Padding="10,5"
+                                        Clicked="OnDetailsClicked" 
+                                        CommandParameter="{Binding .}" />
+                                <Button Text="✏️"
+                                        CornerRadius="4"
+                                        Padding="5,3"
+                                        Clicked="OnEditClicked" 
+                                        CommandParameter="{Binding .}" />
+                                <Button Text="🗑️"
+                                        CornerRadius="4"
+                                        Padding="5,3"
+                                        Clicked="OnDeleteClicked"
+                                        CommandParameter="{Binding .}" />
+                            </StackLayout>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

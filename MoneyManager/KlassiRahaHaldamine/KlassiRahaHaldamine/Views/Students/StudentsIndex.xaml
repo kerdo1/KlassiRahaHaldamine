@@ -8,38 +8,43 @@
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="20">
 
-            <Button
-                Text="Tagasi"
-                HorizontalOptions="Start"
-                Clicked="OnBackEventClicked"/>
+            <Grid>
+                <Button Grid.Column="0"
+                    Text="Tagasi"
+                    HorizontalOptions="Start"
+                    Clicked="OnBackEventClicked"/>
+                <Button Grid.Column="1" 
+                    Text="Lisa õpilane" 
+                    HorizontalOptions="End"
+                    Clicked="OnCreateStudentClicked" />
+            </Grid>
 
-            <Button 
-                Text="Lisa õpilane" 
-                HorizontalOptions="Center"
-                Clicked="OnCreateStudentClicked" />
-
-            <!-- Students CollectionView -->
             <CollectionView 
                 x:Name="StudentsCollectionView"
                 ItemsSource="{Binding Students}"
                 SelectionMode="None"
                 EmptyView="No students available.">
 
-                <!-- Student Item Template -->
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10" ColumnSpacing="20">
 
-                            <!-- Define Columns -->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <!-- For labels -->
                                 <ColumnDefinition Width="Auto" />
-                                <!-- For buttons -->
                             </Grid.ColumnDefinitions>
 
-                            <!-- Labels (Aligned Left) -->
                             <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
+                                <Frame x:Name="WalletFrame"                                 
+                                       BorderColor="Black"
+                                       CornerRadius="4"
+                                       Padding="5,3">
+                                    <Label Text="{Binding Amount}"                              
+                                           FontAttributes="Bold" 
+                                           FontSize="Medium" 
+                                           VerticalOptions="Center" />
+                                </Frame>
                                 <Label Text="{Binding FirstName}" 
                                        FontAttributes="Bold" 
                                        FontSize="Small" 
@@ -51,41 +56,28 @@
                                        FontSize="Small" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
-
-
                             </StackLayout>
 
-                            <!-- Action Buttons (Aligned Right) -->
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-                                <Frame x:Name="WalletFrame"                                 
-                                       BorderColor="Black"
-                                       CornerRadius="4"
-                                       Padding="5,3">
-                                    <Label Text="{Binding Amount}"                              
-                                           FontAttributes="Bold" 
-                                           FontSize="Medium" 
-                                           VerticalOptions="Center" 
-        />
-                                </Frame>
 
-                                <Button Text="ℹ️" 
-                                        
-                                        CornerRadius="4" 
-                                        Padding="5,3" 
-                            
-                                        TextColor="White" />
+                                <Button Text="?" 
+                                        FontSize="Medium"
 
-                                <Button Text="📝" 
-                                         
                                         CornerRadius="4" 
-                                        Padding="5,3" 
-                                       
-                                        TextColor="White" />
+                                        Padding="10,5"
+                                        Clicked="OnDetailsClicked"
+                                        CommandParameter="{Binding .}"
+                                         />
+                                <Button Text="✏️"                                    
+                                        CornerRadius="4" 
+                                        Padding="5,3"
+                                        Clicked="OnEditClicked"
+                                        CommandParameter="{Binding .}"/>
 
-                                <Button Text="🗑️" 
+
+                                <Button Text="🗑️"                                        
                                         CornerRadius="4" 
-                                        Padding="5,3" 
-                                        TextColor="White"
+                                        Padding="5,3"
                                         Clicked="OnDeleteClicked"
                                         CommandParameter="{Binding .}"/>
                             </StackLayout>
