@@ -4,6 +4,14 @@
              x:Class="KlassiRahaHaldamine.Views.Events.EventDelete"
              Title="Kustuta üritus">
     <VerticalStackLayout Padding="20" Spacing="15">
+        <Button Grid.Column="0"
+                Margin="0,0,0,20"
+                Text="↩"
+                TextColor="#2D4D3A"
+                FontSize="Small"             
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnBackToEventsClicked"/>
        
         <Label Text="{Binding Name}" 
                FontAttributes="Bold"

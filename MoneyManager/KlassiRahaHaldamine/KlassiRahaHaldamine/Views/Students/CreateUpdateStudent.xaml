@@ -5,27 +5,30 @@
              x:Class="KlassiRahaHaldamine.Views.Students.CreateUpdateStudent"
              Title="Lisa Õpilane">
 
-    <VerticalStackLayout Padding="20">
-        
-            <Button Grid.Column="0"
-                    Text="Tagasi"
-                    HorizontalOptions="Start"
-                    Clicked="OnBackToStudentsClicked"/>
-      
-        <Label Text="Eesnimi" Margin="0,10,0,5" />
-        <Entry x:Name="FirstNameEntry" Placeholder="Enter First Name" />
+    <VerticalStackLayout Padding="20" Spacing="15">
 
-        <Label Text="Perekonnanimi" Margin="0,10,0,5" />
-        <Entry x:Name="LastNameEntry" Placeholder="Enter Last Name" />
+        <Button Grid.Column="0"
+                Text="↩"
+                TextColor="#2D4D3A"
+                FontSize="Small"             
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnBackToStudentsClicked"/>
 
-        <Label Text="Summa" Margin="0,10,0,5" />
-        <Entry x:Name="AmountEntry" Placeholder="Enter Amount" Keyboard="Numeric" />
+        <Label Text="Eesnimi"  />
+        <Entry x:Name="FirstNameEntry" Placeholder="Sisesta eesnimi" />
 
-        <Label Text="Kontakt" Margin="0,10,0,5" />
-        <Entry x:Name="ContactNameEntry" Placeholder="Enter Contact Name" />
+        <Label Text="Perekonnanimi"  />
+        <Entry x:Name="LastNameEntry" Placeholder="Sisesta perekonnanimi" />
 
-        <Label Text="Kontakt number" Margin="0,10,0,5" />
-        <Entry x:Name="ContactNumberEntry" Placeholder="Enter Contact Number" Keyboard="Numeric" Margin="0,10" />
+        <Label Text="Summa"  />
+        <Entry x:Name="AmountEntry" Placeholder="Sisesta laekumine" Keyboard="Numeric" />
+
+        <Label Text="Kontakt"  />
+        <Entry x:Name="ContactNameEntry" Placeholder="Kontakti ees- ja perekonnanimi" />
+
+        <Label Text="Kontakt number" />
+        <Entry x:Name="ContactNumberEntry" Placeholder="Sisesta kontaktnumber" Keyboard="Numeric" Margin="0,10" />
 
         <Button Text="Salvesta" Clicked="OnSaveStudentClicked" BackgroundColor="#3F6C51" TextColor="#F3F7F5" />
     </VerticalStackLayout>

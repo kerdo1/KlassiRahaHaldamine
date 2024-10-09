@@ -15,6 +15,11 @@ namespace KlassiRahaHaldamine.Views.Events
             BindingContext = _eventToDelete; // Show event data
         }
 
+        private async void OnBackToEventsClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EventsIndex());
+        }
+
         private async void OnConfirmDeleteClicked(object sender, EventArgs e)
         {
             if (_eventToDelete != null)

@@ -9,6 +9,10 @@ public partial class EventCreate : ContentPage
     {
         InitializeComponent();
     }
+    private async void OnBackToEventsClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new EventsIndex());
+    }
 
     private async void OnSaveEventClicked(object sender, EventArgs e)
     {
