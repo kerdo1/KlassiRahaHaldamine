@@ -12,14 +12,22 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="20">
+        <VerticalStackLayout Padding="20" Spacing="30">
             <Grid>
                 <Button Grid.Column="0"
-                        Text="Tagasi"
+                        Text="↩"
+                        TextColor="#2D4D3A"
+                        FontSize="Small"
+                        VerticalOptions="Start"
                         HorizontalOptions="Start"
                         Clicked="OnBackEventClicked"/>
                 <Button Grid.Column="1" 
-                        Text="Loo uus üritus" 
+                        Text="+" 
+                        TextColor="#2D4D3A"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Padding="10,0,10,5"
+                        VerticalOptions="Start"
                         HorizontalOptions="End"
                         Clicked="OnCreateEventClicked" />
             </Grid>
@@ -29,7 +37,7 @@
                             EmptyView="No events available.">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10" ColumnSpacing="20">
+                        <Grid Padding="0,0,0,10" ColumnSpacing="20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -46,7 +54,7 @@
                             </StackLayout>
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
                                 <Frame x:Name="WalletFrame"                                 
-                                       BorderColor="Black"
+                                       BorderColor="#2D4D3A"
                                        CornerRadius="4"
                                        Padding="5,3">
                                     <Label Text="{Binding Price}"                              
@@ -57,7 +65,7 @@
                                 <Button Text="?"
                                         FontSize="Medium"
                                         CornerRadius="4"
-                                        Padding="10,5"
+                                        Padding="10,3"
                                         Clicked="OnDetailsClicked" 
                                         CommandParameter="{Binding .}" />
                                 <Button Text="✏️"

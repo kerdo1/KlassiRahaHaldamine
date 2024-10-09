@@ -12,6 +12,7 @@ public partial class StudentDelete : ContentPage
     {
         InitializeComponent();
         _databaseContext = new DatabaseContext();
+       
 
         if (studentToDelete == null)
         {
@@ -35,5 +36,9 @@ public partial class StudentDelete : ContentPage
             // Return to student list view
             await Navigation.PopAsync();
         }
+    }
+    private async void OnBackToStudentsClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new StudentsIndex());
     }
 }
