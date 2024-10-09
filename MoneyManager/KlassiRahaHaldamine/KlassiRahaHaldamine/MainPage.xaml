@@ -29,7 +29,8 @@
                     TextColor="#3F6C51"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    FontSize="36"
+                    FontAttributes="Bold"
+                    FontSize="44"
                     HorizontalTextAlignment="Center"  
                     VerticalTextAlignment="Center" />
 
