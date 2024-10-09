@@ -7,6 +7,7 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="20">
+
             <Grid>
                 <Button Grid.Column="0"
                     Text="Tagasi"
@@ -17,7 +18,7 @@
                     HorizontalOptions="End"
                     Clicked="OnCreateStudentClicked" />
             </Grid>
-         
+
             <CollectionView 
                 x:Name="StudentsCollectionView"
                 ItemsSource="{Binding Students}"
@@ -46,33 +47,33 @@
                                 </Frame>
                                 <Label Text="{Binding FirstName}" 
                                        FontAttributes="Bold" 
-                                       FontSize="Medium" 
+                                       FontSize="Small" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
 
                                 <Label Text="{Binding LastName}" 
                                        FontAttributes="Bold" 
-                                       FontSize="Medium" 
+                                       FontSize="Small" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start" />
                             </StackLayout>
 
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-                                
 
                                 <Button Text="?" 
                                         FontSize="Medium"
+
                                         CornerRadius="4" 
                                         Padding="10,5"
                                         Clicked="OnDetailsClicked"
                                         CommandParameter="{Binding .}"
                                          />
-
                                 <Button Text="✏️"                                    
                                         CornerRadius="4" 
                                         Padding="5,3"
                                         Clicked="OnEditClicked"
                                         CommandParameter="{Binding .}"/>
+
 
                                 <Button Text="🗑️"                                        
                                         CornerRadius="4" 
@@ -86,5 +87,6 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
-    
+
 </ContentPage>
+    

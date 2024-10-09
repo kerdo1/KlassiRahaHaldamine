@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KlassiRahaHaldamine.Views.Students.StudentDelete"
+             Title="Kustuta õpilane">
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="{Binding FirstName}" 
+               FontAttributes="Bold"
+               FontSize="Large"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding LastName}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding Amount, StringFormat='Summa: {0}'}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding ContactName}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />    
+
+        <Label Text="{Binding ContactNumber}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
+
+        <Button Text="Kustuta" Clicked="OnConfirmDeleteClicked" BackgroundColor="Red" TextColor="White"/>
+    </VerticalStackLayout>
+</ContentPage>
