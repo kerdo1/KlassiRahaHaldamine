@@ -1,12 +1,100 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KlassiRahaHaldamine.Views.Students"
-             Title="Õpilased">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+             x:Class="KlassiRahaHaldamine.Views.Students.StudentsIndex"
+             Title="Students">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="20">
+
+            <Button
+                Text="Tagasi"
+                HorizontalOptions="Start"
+                Clicked="OnBackEventClicked"/>
+
+            <Button 
+                Text="Lisa õpilane" 
+                HorizontalOptions="Center"
+                Clicked="OnCreateStudentClicked" />
+
+            <!-- Students CollectionView -->
+            <CollectionView 
+                x:Name="StudentsCollectionView"
+                ItemsSource="{Binding Students}"
+                SelectionMode="None"
+                EmptyView="No students available.">
+
+                <!-- Student Item Template -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnSpacing="20">
+
+                            <!-- Define Columns -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <!-- For labels -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- For buttons -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Labels (Aligned Left) -->
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
+                                <Label Text="{Binding FirstName}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Small" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Start" />
+
+                                <Label Text="{Binding LastName}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Small" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Start" />
+
+
+                            </StackLayout>
+
+                            <!-- Action Buttons (Aligned Right) -->
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
+                                <Frame x:Name="WalletFrame"                                 
+                                       BorderColor="Black"
+                                       CornerRadius="4"
+                                       Padding="5,3">
+                                    <Label Text="{Binding Amount}"                              
+                                           FontAttributes="Bold" 
+                                           FontSize="Medium" 
+                                           VerticalOptions="Center" 
+        />
+                                </Frame>
+
+                                <Button Text="ℹ️" 
+                                        
+                                        CornerRadius="4" 
+                                        Padding="5,3" 
+                            
+                                        TextColor="White" />
+
+                                <Button Text="📝" 
+                                         
+                                        CornerRadius="4" 
+                                        Padding="5,3" 
+                                       
+                                        TextColor="White" />
+
+                                <Button Text="🗑️" 
+                                        CornerRadius="4" 
+                                        Padding="5,3" 
+                                        TextColor="White"
+                                        Clicked="OnDeleteClicked"
+                                        CommandParameter="{Binding .}"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
+    
