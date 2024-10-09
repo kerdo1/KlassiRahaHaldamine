@@ -21,7 +21,7 @@
         <Label Text="Contact Number" />
         <Entry x:Name="ContactNumberEntry" Placeholder="Enter Contact Number" Keyboard="Telephone" />
 
-        <Button Text="Save" Clicked="OnSaveStudentClicked" BackgroundColor="LightGreen" />
+        <Button Text="Save" Clicked="OnSaveStudentClicked" BackgroundColor="#3F6C51" TextColor="#F3F7F5" />
     </VerticalStackLayout>
 
 </ContentPage>
