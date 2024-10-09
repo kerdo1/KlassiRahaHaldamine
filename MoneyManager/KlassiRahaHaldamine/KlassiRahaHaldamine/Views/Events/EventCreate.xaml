@@ -8,6 +8,6 @@
         <DatePicker x:Name="EventDatePicker" />
         <Entry x:Name="DescriptionEntry" Placeholder="Ürituse kirjeldus" />
         <Entry x:Name="EventPrice" Placeholder="Ürituse hind" />
-        <Button Text="Salvesta" Clicked="OnSaveEventClicked" BackgroundColor="LightGreen" />
+        <Button Text="Salvesta" Clicked="OnSaveEventClicked" BackgroundColor="#3F6C51" TextColor="#F3F7F5" />
     </VerticalStackLayout>
 </ContentPage>
