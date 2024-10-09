@@ -5,7 +5,10 @@
              Title="Kustuta õpilane">
     <VerticalStackLayout Padding="20" Spacing="15">
         <Button Grid.Column="0"
-                Text="Tagasi"
+                Text="↩"
+                TextColor="#2D4D3A"
+                FontSize="Small"             
+                VerticalOptions="Start"
                 HorizontalOptions="Start"
                 Clicked="OnBackToStudentsClicked"/>
 
