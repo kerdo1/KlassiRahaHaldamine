@@ -9,7 +9,6 @@ public class Event
     public string Description { get; set; }
     public decimal Price { get; set; }
 
-    // Avalik parameterless konstruktor
     public Event()
     {
     }

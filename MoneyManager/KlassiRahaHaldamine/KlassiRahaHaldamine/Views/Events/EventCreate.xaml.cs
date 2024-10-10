@@ -1,14 +1,18 @@
 using KlassiRahaHaldamine.Data;
-
+using KlassiRahaHaldamine.Models;
 
 namespace KlassiRahaHaldamine.Views.Events;
 
 public partial class EventCreate : ContentPage
 {
+    private readonly DatabaseContext _databaseContext;
+
     public EventCreate()
     {
         InitializeComponent();
+        _databaseContext = new DatabaseContext(); 
     }
+
     private async void OnBackToEventsClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new EventsIndex());
@@ -16,9 +20,25 @@ public partial class EventCreate : ContentPage
 
     private async void OnSaveEventClicked(object sender, EventArgs e)
     {
-        // Change the price from text box to number (decimal) and make sure it's valid
-        decimal.TryParse(EventPrice.Text, out decimal eventPrice);
+        // Check if the required fields are filled in
+        if (string.IsNullOrWhiteSpace(NameEntry.Text))
+        {
+            await DisplayAlert("Viga", "Palun sisesta ürituse nimi.", "OK");
+            return;
+        }
 
+        if (string.IsNullOrWhiteSpace(EventPrice.Text) || !decimal.TryParse(EventPrice.Text, out decimal eventPrice))
+        {
+            await DisplayAlert("Viga", "Palun sisesta ürituse hind.", "OK");
+            return;
+        }
+
+        if (EventDatePicker.Date <= DateTime.Today)
+        {
+            await DisplayAlert("Viga", "Palun vali ürituse kuupäev.", "OK");
+            return;
+        }
+        
         // Create a new EventModel object and fill it with data
         var newEvent = new Event
         {
@@ -28,13 +48,30 @@ public partial class EventCreate : ContentPage
             Price = eventPrice
         };
 
-        // Create a database context instance
-        var databaseContext = new DatabaseContext();
-
         // Save data to database
-        await databaseContext.AddItemAsync(newEvent);
+        await _databaseContext.AddItemAsync(newEvent);
 
-        // Back to event list
+        // Share the cost of the event among students
+        await SplitEventCostAmongStudents(newEvent);
+
+        // Return to the list of events
         await Navigation.PopAsync();
+    }
+
+    private async Task SplitEventCostAmongStudents(Event newEvent)
+    {
+        // Search for all students
+        var students = await _databaseContext.GetAllAsync<Student>();
+        if (students == null || !students.Any())
+            return;
+
+        // Calculate the share of the price for each student
+        decimal costPerStudent = newEvent.Price / students.Count();
+
+        foreach (var student in students)
+        {
+            student.Amount -= costPerStudent; // Subtract the amount from the student's account
+            await _databaseContext.UpdateItemAsync(student); // Update student data in database
+        }
     }
 }
