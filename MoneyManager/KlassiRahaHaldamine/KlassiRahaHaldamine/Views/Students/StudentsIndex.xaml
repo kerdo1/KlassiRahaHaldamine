@@ -50,7 +50,7 @@
                                        Padding="5,3"
                                        WidthRequest="44" 
                                        HeightRequest="40">
-                                    <Label Text="{Binding Amount}" 
+                                    <Label Text="{Binding Amount, StringFormat='{0:0}'}" 
                                            TextColor="#2D4D3A"
                                            FontAttributes="Bold" 
                                            FontSize="Small" 

@@ -17,7 +17,7 @@ public partial class CreateUpdateStudent : ContentPage
 
     private async void OnSaveStudentClicked(object sender, EventArgs e)
     {
-        int.TryParse(AmountEntry.Text, out int amount);
+        decimal.TryParse(AmountEntry.Text, out decimal amount);
         int.TryParse(ContactNumberEntry.Text, out int contactNumber);
 
         var newStudent = new Student

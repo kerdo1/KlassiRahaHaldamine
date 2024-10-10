@@ -49,10 +49,10 @@
                                        Padding="5,3"
                                        WidthRequest="55" 
                                        HeightRequest="40">
-                                    <Label Text="{Binding Price}"                              
+                                    <Label Text="{Binding Price, StringFormat='{0:0}'}"                              
                                            FontAttributes="Bold" 
                                            FontSize="Small"
-                                           HorizontalOptions="Start"
+                                           HorizontalOptions="End"
                                            VerticalOptions="Center" />
                                 </Frame>
                             </StackLayout>

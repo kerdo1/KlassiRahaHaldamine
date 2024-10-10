@@ -16,8 +16,8 @@ public partial class EventCreate : ContentPage
 
     private async void OnSaveEventClicked(object sender, EventArgs e)
     {
-        // Change the price from text box to number (int) and make sure it's valid
-        int.TryParse(EventPrice.Text, out int eventPrice);
+        // Change the price from text box to number (decimal) and make sure it's valid
+        decimal.TryParse(EventPrice.Text, out decimal eventPrice);
 
         // Create a new EventModel object and fill it with data
         var newEvent = new Event
