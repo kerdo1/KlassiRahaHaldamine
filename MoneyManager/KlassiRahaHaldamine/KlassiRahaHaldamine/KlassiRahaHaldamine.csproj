@@ -103,7 +103,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Services\" />
 
 	  <MauiXaml Update="Views\Events\Popup.xaml">
 	    <Generator>MSBuild:Compile</Generator>

@@ -32,7 +32,11 @@
 
         <Label Text="{Binding ContactName}"
                FontSize="Medium"
-               HorizontalOptions="Center" />    
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding ContactEmail}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
 
         <Label Text="{Binding ContactNumber}"
                FontSize="Medium"

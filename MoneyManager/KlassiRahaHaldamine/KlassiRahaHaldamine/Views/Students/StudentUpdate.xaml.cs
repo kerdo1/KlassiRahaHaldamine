@@ -18,6 +18,7 @@ namespace KlassiRahaHaldamine.Views.Students
             LastNameEntry.Text = _studentItem.LastName;
             AmountEntry.Text = _studentItem.Amount.ToString();
             ContactNameEntry.Text = _studentItem.ContactName;
+            ContactEmailEntry.Text = _studentItem.ContactEmail;
             ContactNumber.Text = _studentItem.ContactNumber.ToString();
         }
 
@@ -37,6 +38,7 @@ namespace KlassiRahaHaldamine.Views.Students
             _studentItem.LastName = LastNameEntry.Text;
             _studentItem.Amount = Convert.ToDecimal(amount);
             _studentItem.ContactName = ContactNameEntry.Text;
+            _studentItem.ContactEmail = ContactEmailEntry.Text;
             ContactNumber.Text = _studentItem.ContactNumber.ToString();
 
             // Save the changes to the database

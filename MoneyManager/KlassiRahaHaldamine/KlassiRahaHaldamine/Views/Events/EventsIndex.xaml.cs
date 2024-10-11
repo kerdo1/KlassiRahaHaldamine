@@ -52,7 +52,7 @@ public partial class EventsIndex : ContentPage
     private async void OnEditClicked(object sender, EventArgs e)
     {
         //var eventItem = (Event)((Button)sender).CommandParameter;
-        // Ava muutmisvaade
+        // Open edit view
         //await Navigation.PushAsync(new EventsCreateUpdate());
         var button = (Button)sender;
         var eventItem = (Event)button.CommandParameter;
