@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 
              x:Class="KlassiRahaHaldamine.Views.Students.StudentsIndex"
-             Title="">
+             Title="Õpilased">
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
@@ -22,8 +22,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
-                                <HorizontalStackLayout>
+                            <StackLayout Orientation="Vertical" Padding="50">
+                                <HorizontalStackLayout Spacing="20">
                                     <Label Text="{Binding FirstName}" 
                                            FontAttributes="Bold" 
                                            FontSize="Medium" 
@@ -46,8 +46,8 @@
                                 <!-- Nupud: Detailid, Muuda, Kustuta -->
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                     <Button Text="Detailid"   />
-                                    <Button Text="Muuda"   />
-                                    <Button Text="Kustuta"  />
+                                    <Button Text="Muuda" Clicked="OnUpdateStudentClicked" />
+                                        <Button Text="Kustuta"  />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

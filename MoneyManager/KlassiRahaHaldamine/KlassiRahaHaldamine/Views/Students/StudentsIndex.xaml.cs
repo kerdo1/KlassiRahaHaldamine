@@ -1,4 +1,3 @@
-
 using KlassiRahaHaldamine.Data;
 using KlassiRahaHaldamine.Models;
 using System.Collections.ObjectModel;
@@ -9,18 +8,21 @@ public partial class StudentsIndex : ContentPage
 {
     private DatabaseContext _databaseContext;
     public ObservableCollection<Student> Students { get; set; }
+
     public StudentsIndex()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _databaseContext = new DatabaseContext();
         Students = new ObservableCollection<Student>();
         BindingContext = this;
     }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LoadStudents();
+        LoadStudents(); // Load students every time the page appears
     }
+
     private async void LoadStudents()
     {
         var students = await _databaseContext.GetAllAsync<Student>();
@@ -33,11 +35,22 @@ public partial class StudentsIndex : ContentPage
             Students.Add(studentItem);
         }
     }
+
     private async void OnCreateStudentClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new CreateUpdateStudent());
-        LoadStudents(); 
     }
 
+    private async void OnUpdateStudentClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var student = button?.BindingContext as Student;
 
+        if (student != null)
+        {
+            // Navigate to the StudentUpdate page and pass the selected student
+            await Navigation.PushAsync(new StudentUpdate(student));
+        }
+    }
+    
 }
