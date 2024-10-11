@@ -3,13 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:KlassiRahaHaldamine.Models"
              x:Class="KlassiRahaHaldamine.Views.Students.CreateUpdateStudent"
-             Title="CreateUpdateStudent">
-    <VerticalStackLayout>
-        <Entry x:Name="FirstNameEntry" Placeholder="Eesnimi" />
-        <Entry x:Name="LastNameEntry" Placeholder="Perekonnanimi" />
-        <Entry x:Name="AmountEntry" Placeholder="Summa" />
-        <Entry x:Name="ContactNameEntry" Placeholder="Kontakt" />
-        <Entry x:Name="ContactNumber" Placeholder="Kontakt telefon" />
-        <Button Text="Salvesta" Clicked="OnSaveStudentClicked"/>
+             Title="Lisa Õpilane">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Button Grid.Column="0"
+                Text="↩"
+                TextColor="#2D4D3A"
+                FontSize="Small"             
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnBackToStudentsClicked"/>
+
+        <Label Text="Eesnimi"  />
+        <Entry x:Name="FirstNameEntry" Placeholder="Sisesta eesnimi" />
+
+        <Label Text="Perekonnanimi"  />
+        <Entry x:Name="LastNameEntry" Placeholder="Sisesta perekonnanimi" />
+
+        <Label Text="Summa"  />
+        <Entry x:Name="AmountEntry" Placeholder="Sisesta laekumine" Keyboard="Numeric" />
+
+        <Label Text="Kontakt"  />
+        <Entry x:Name="ContactNameEntry" Placeholder="Kontakti ees- ja perekonnanimi" />
+
+        <Label Text="Kontakt number" />
+        <Entry x:Name="ContactNumberEntry" Placeholder="Sisesta kontaktnumber" Keyboard="Numeric" Margin="0,10" />
+
+        <Button Text="Salvesta" Clicked="OnSaveStudentClicked" BackgroundColor="#3F6C51" TextColor="#F3F7F5" />
     </VerticalStackLayout>
+
 </ContentPage>
+    

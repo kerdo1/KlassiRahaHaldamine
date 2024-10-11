@@ -36,11 +36,32 @@ public partial class StudentsIndex : ContentPage
         }
     }
 
-    private async void OnCreateStudentClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new CreateUpdateStudent());
+    private async void OnBackEventClicked(object sender, EventArgs e)
+    {      
+        await Navigation.PushAsync(new MainPage());
     }
 
+
+    private async void OnCreateStudentClicked(object sender, EventArgs e)
+    {
+        //await Navigation.PushAsync(new CreateUpdateStudent());
+        //LoadStudents();
+        await Navigation.PushAsync(new CreateUpdateStudent());
+    }
+    
+    private async void OnDeleteClicked(object sender, EventArgs e)
+    {
+        var studentItem = (Student)((Button)sender).CommandParameter;
+        await Navigation.PushAsync(new StudentDelete(studentItem));
+        LoadStudents(); // Refresh the list after deleting a student
+    }
+    
+    private void OnDetailsClicked(object sender, EventArgs e)
+    {
+        var studentItem = (Student)((Button)sender).CommandParameter;
+        // Open detail view
+    }
+    
     private async void OnUpdateStudentClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -52,5 +73,11 @@ public partial class StudentsIndex : ContentPage
             await Navigation.PushAsync(new StudentUpdate(student));
         }
     }
+    
+    /*private void OnEditClicked(object sender, EventArgs e)
+    {
+        var studentItem = (Student)((Button)sender).CommandParameter;
+        // Open edit view
+    }*/
     
 }
