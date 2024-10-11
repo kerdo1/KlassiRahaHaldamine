@@ -15,7 +15,6 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="pink piggy bank" />
 
-            <!-- Kast rahasumma kuvamiseks, hiljem tuleb funktsioon siin välja kutsuda -->
             <Frame
                 x:Name="MoneyFrame"
                 BackgroundColor="#CDDFD5"
