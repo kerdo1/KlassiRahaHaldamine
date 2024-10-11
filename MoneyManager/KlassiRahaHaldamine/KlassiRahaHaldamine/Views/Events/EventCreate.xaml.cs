@@ -1,77 +1,117 @@
 using KlassiRahaHaldamine.Data;
 using KlassiRahaHaldamine.Models;
+using KlassiRahaHaldamine.ViewModels;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace KlassiRahaHaldamine.Views.Events;
-
-public partial class EventCreate : ContentPage
+namespace KlassiRahaHaldamine.Views.Events
 {
-    private readonly DatabaseContext _databaseContext;
-
-    public EventCreate()
+    public partial class EventCreate : ContentPage
     {
-        InitializeComponent();
-        _databaseContext = new DatabaseContext(); 
-    }
+        private readonly DatabaseContext _databaseContext;
+        private ObservableCollection<StudentViewModel> studentList;
+        private Event newEvent; // Lisame klassitasemel muutuja
 
-    private async void OnBackToEventsClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new EventsIndex());
-    }
-
-    private async void OnSaveEventClicked(object sender, EventArgs e)
-    {
-        // Check if the required fields are filled in
-        if (string.IsNullOrWhiteSpace(NameEntry.Text))
+        public EventCreate()
         {
-            await DisplayAlert("Viga", "Palun sisesta ürituse nimi.", "OK");
-            return;
+            InitializeComponent();
+            _databaseContext = new DatabaseContext();
         }
 
-        if (string.IsNullOrWhiteSpace(EventPrice.Text) || !decimal.TryParse(EventPrice.Text, out decimal eventPrice))
+        private async void OnBackToEventsClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Viga", "Palun sisesta ürituse hind.", "OK");
-            return;
+            await Navigation.PushAsync(new EventsIndex());
         }
 
-        if (EventDatePicker.Date <= DateTime.Today)
+        private async void OnSaveEventClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Viga", "Palun vali ürituse kuupäev.", "OK");
-            return;
+            // Kontrollime, kas vajalikud väljad on täidetud
+            if (string.IsNullOrWhiteSpace(NameEntry.Text))
+            {
+                await DisplayAlert("Viga", "Palun sisesta ürituse nimi.", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(EventPrice.Text) || !decimal.TryParse(EventPrice.Text, out decimal eventPrice))
+            {
+                await DisplayAlert("Viga", "Palun sisesta ürituse hind.", "OK");
+                return;
+            }
+
+            if (EventDatePicker.Date <= DateTime.Today)
+            {
+                await DisplayAlert("Viga", "Palun vali tuleviku kuupäev.", "OK");
+                return;
+            }
+
+            // Luuakse uus Event objekt ja täidetakse andmetega
+            newEvent = new Event // Muudame 'newEvent' klassitasemel muutujaks
+            {
+                Name = NameEntry.Text,
+                Description = DescriptionEntry.Text,
+                EventDate = EventDatePicker.Date,
+                Price = eventPrice
+            };
+
+            // Kuvage õpilaste valimise pop-up
+            await ShowStudentSelectionPopup();
         }
-        
-        // Create a new EventModel object and fill it with data
-        var newEvent = new Event
+
+        private async Task ShowStudentSelectionPopup()
         {
-            Name = NameEntry.Text,
-            Description = DescriptionEntry.Text,
-            EventDate = EventDatePicker.Date,
-            Price = eventPrice
-        };
+            // Laadige õpilaste andmed
+            var students = await _databaseContext.GetAllAsync<Student>();
 
-        // Save data to database
-        await _databaseContext.AddItemAsync(newEvent);
+            // Muutke õpilased StudentViewModel'iks
+            studentList = new ObservableCollection<StudentViewModel>(
+                students.Select(s => new StudentViewModel
+                {
+                    Id = s.Id, // Veenduge, et Id on olemas
+                    FirstName = s.FirstName,
+                    LastName = s.LastName,
+                    IsSelected = true // Kõik õpilased on algselt valitud
+                })
+            );
 
-        // Share the cost of the event among students
-        await SplitEventCostAmongStudents(newEvent);
+            // Avage pop-up aken õpilaste valimiseks
+            var popup = new Popup(studentList);
+            popup.Disappearing += Popup_Disappearing; // Registreerime ürituse
+            await Navigation.PushModalAsync(popup); // Kasutage PushModalAsync, et avada pop-up
+        }
 
-        // Return to the list of events
-        await Navigation.PopAsync();
-    }
-
-    private async Task SplitEventCostAmongStudents(Event newEvent)
-    {
-        // Search for all students
-        var students = await _databaseContext.GetAllAsync<Student>();
-        if (students == null || !students.Any())
-            return;
-
-        // Calculate the share of the price for each student
-        decimal costPerStudent = newEvent.Price / students.Count();
-
-        foreach (var student in students)
+        private async void Popup_Disappearing(object sender, EventArgs e)
         {
-            student.Amount -= costPerStudent; // Subtract the amount from the student's account
-            await _databaseContext.UpdateItemAsync(student); // Update student data in database
+            // Jagame ürituse kulu valitud õpilaste vahel
+            await SplitEventCostAmongStudents(newEvent); // Kasutage klassitasemel muutuja
+
+            // Salvesta andmed andmebaasi
+            await _databaseContext.AddItemAsync(newEvent);
+
+            // Tagasi ürituste loendisse
+            await Navigation.PopAsync();
+        }
+
+        private async Task SplitEventCostAmongStudents(Event newEvent)
+        {
+            // Leiame ainult valitud õpilased, kellele jagame kulu
+            var selectedStudentIds = studentList.Where(s => s.IsSelected).Select(s => s.Id).ToList();
+
+            // Laadime kõik õpilased andmebaasist
+            var allStudents = await _databaseContext.GetAllAsync<Student>();
+            var selectedStudents = allStudents.Where(s => selectedStudentIds.Contains(s.Id)).ToList();
+
+            if (!selectedStudents.Any())
+                return; // Kui ükski õpilane ei ole valitud, ei tee midagi
+
+            // Arvuta hinna osakaal iga valitud õpilase kohta
+            decimal costPerStudent = newEvent.Price / selectedStudents.Count;
+
+            foreach (var student in selectedStudents)
+            {
+                student.Amount -= costPerStudent; // Lahuta summa õpilase kontolt
+                await _databaseContext.UpdateItemAsync(student); // Uuenda õpilase andmed andmebaasis
+            }
         }
     }
 }

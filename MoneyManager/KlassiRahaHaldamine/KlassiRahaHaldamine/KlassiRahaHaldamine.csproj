@@ -85,6 +85,9 @@
 	  <MauiXaml Update="Views\Events\EventsIndex.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Events\Popup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Students\CreateUpdateStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
