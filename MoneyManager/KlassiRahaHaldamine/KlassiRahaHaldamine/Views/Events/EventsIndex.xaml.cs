@@ -48,11 +48,17 @@ public partial class EventsIndex : ContentPage
         var eventItem = (Event)((Button)sender).CommandParameter;
         // Open detail view
     }
-    private void OnEditClicked(object sender, EventArgs e)
+
+    private async void OnEditClicked(object sender, EventArgs e)
     {
-        var eventItem = (Event)((Button)sender).CommandParameter;
-        // Open edit view
+        //var eventItem = (Event)((Button)sender).CommandParameter;
+        // Ava muutmisvaade
+        //await Navigation.PushAsync(new EventsCreateUpdate());
+        var button = (Button)sender;
+        var eventItem = (Event)button.CommandParameter;
+        await Navigation.PushAsync(new EventsCreateUpdate(eventItem));
     }
+    
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;

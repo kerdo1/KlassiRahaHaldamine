@@ -5,6 +5,7 @@
              x:Class="KlassiRahaHaldamine.Views.Events.EventsIndex"
              Title="Üritused">
 
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:EventDateToColorConverter x:Key="EventDateToColorConverter" />

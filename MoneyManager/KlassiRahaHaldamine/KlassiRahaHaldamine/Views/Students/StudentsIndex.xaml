@@ -40,6 +40,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+
                         <Grid Padding="0,0,0,10" ColumnSpacing="20">
 
                             <Grid.ColumnDefinitions>
@@ -54,6 +55,7 @@
                                        WidthRequest="44" 
                                        HeightRequest="40">
                                     <Label Text="{Binding Amount, StringFormat='{0:0}'}"                                    
+ 
                                            FontAttributes="Bold" 
                                            FontSize="Small" 
                                            HorizontalOptions="End"
@@ -89,7 +91,7 @@
                                 <Button Text="✏️"                                    
                                         CornerRadius="4" 
                                         Padding="5,3"
-                                        Clicked="OnEditClicked"
+                                        Clicked="OnUpdateStudentClicked"
                                         CommandParameter="{Binding .}"/>
 
 
