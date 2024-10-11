@@ -35,9 +35,9 @@ namespace KlassiRahaHaldamine.Views.Students
             // Update the existing student's fields
             _studentItem.FirstName = FirstNameEntry.Text;
             _studentItem.LastName = LastNameEntry.Text;
-            _studentItem.Amount = amount;
+            _studentItem.Amount = Convert.ToDecimal(amount);
             _studentItem.ContactName = ContactNameEntry.Text;
-            _studentItem.ContactNumber = contactNumber;
+            ContactNumber.Text = _studentItem.ContactNumber.ToString();
 
             // Save the changes to the database
             var databaseContext = new DatabaseContext();
