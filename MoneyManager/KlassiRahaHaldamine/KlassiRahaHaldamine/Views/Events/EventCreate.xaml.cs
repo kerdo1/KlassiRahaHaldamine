@@ -1,6 +1,7 @@
 using KlassiRahaHaldamine.Data;
 using KlassiRahaHaldamine.Models;
 using KlassiRahaHaldamine.ViewModels;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -67,7 +68,7 @@ namespace KlassiRahaHaldamine.Views.Events
             studentList = new ObservableCollection<StudentViewModel>(
                 students.Select(s => new StudentViewModel
                 {
-                    Id = s.Id, 
+                    Id = s.Id,
                     FirstName = s.FirstName,
                     LastName = s.LastName,
                     IsSelected = true // All students are originally selected
@@ -76,20 +77,29 @@ namespace KlassiRahaHaldamine.Views.Events
 
             // Open a pop-up window to select students
             var popup = new Popup(studentList);
-            popup.Disappearing += Popup_Disappearing; 
-            await Navigation.PushModalAsync(popup); 
-        }
+            popup.Disappearing += async (sender, e) =>
+            {
+                // Check if at least 50% of students have been selected
+                decimal totalStudents = studentList.Count;
+                decimal selectedStudentsCount = studentList.Count(s => s.IsSelected);
 
-        private async void Popup_Disappearing(object sender, EventArgs e)
-        {
-            // Divide the cost of the event between selected students
-            await SplitEventCostAmongStudents(newEvent);
+                if (selectedStudentsCount < (totalStudents / 2))
+                {
+                    await DisplayAlert("Viga", "Peate valima vähemalt 50% õpilastest, kellele summat jagada.", "OK");
+                    return; 
+                }
 
-            // Save data to database
-            await _databaseContext.AddItemAsync(newEvent);
+                // Divide the cost of the event between selected students
+                await SplitEventCostAmongStudents(newEvent);
 
-            // Back to event list
-            await Navigation.PopAsync();
+                // Save data to database
+                await _databaseContext.AddItemAsync(newEvent);
+
+                // Back to event list
+                await Navigation.PopAsync(); 
+            };
+
+            await Navigation.PushModalAsync(popup);
         }
 
         private async Task SplitEventCostAmongStudents(Event newEvent)

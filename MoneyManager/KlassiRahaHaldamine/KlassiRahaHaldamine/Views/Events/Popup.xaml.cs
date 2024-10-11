@@ -39,14 +39,12 @@ namespace KlassiRahaHaldamine.Views.Events
 
         private async void OnOkClicked(object sender, EventArgs e)
         {
-            // Tootke "OK" nupp
-            await Navigation.PopModalAsync(); // Kasutage PopModalAsync, et sulgeda pop-up
+            await Navigation.PopModalAsync(); 
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            // Siin saate kutsuda lisafunktsioone, kui pop-up sulgub
         }
     }
 }
