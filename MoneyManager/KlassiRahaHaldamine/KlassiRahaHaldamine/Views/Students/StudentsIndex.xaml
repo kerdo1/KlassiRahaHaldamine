@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-
+             xmlns:converters="clr-namespace:KlassiRahaHaldamine.Converters"
              x:Class="KlassiRahaHaldamine.Views.Students.StudentsIndex"
              Title="Õpilased">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StudentNegativeAmountColorConverter x:Key="StudentNegativeAmountColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="30" >
@@ -11,14 +17,12 @@
             <Grid>
                 <Button Grid.Column="0"
                         Text="↩"
-                        TextColor="#2D4D3A"
                         FontSize="Small"
                         VerticalOptions="Start"
                     HorizontalOptions="Start"
                     Clicked="OnBackEventClicked"/>
                 <Button Grid.Column="1" 
                     Text="+"
-                        TextColor="#2D4D3A"
                         FontAttributes="Bold"
                         FontSize="Medium"
                         Padding="10,0,10,5"
@@ -44,14 +48,12 @@
                             </Grid.ColumnDefinitions>
 
                             <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
-                                <Frame x:Name="WalletFrame"                                 
-                                       BorderColor="#2D4D3A"
+                                <Frame                                                                 
                                        CornerRadius="4"
                                        Padding="5,3"
                                        WidthRequest="44" 
                                        HeightRequest="40">
-                                    <Label Text="{Binding Amount, StringFormat='{0:0}'}" 
-                                           TextColor="#2D4D3A"
+                                    <Label Text="{Binding Amount, StringFormat='{0:0}'}"                                    
                                            FontAttributes="Bold" 
                                            FontSize="Small" 
                                            HorizontalOptions="End"
@@ -61,13 +63,17 @@
                                        FontAttributes="Bold" 
                                        FontSize="Micro" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Start" />
+                                       HorizontalOptions="Start"
+                                       TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
+
 
                                 <Label Text="{Binding LastName}" 
                                        FontAttributes="Bold" 
                                        FontSize="Micro" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Start" />
+                                       HorizontalOptions="Start"
+                                       TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
+                                
                             </StackLayout>
 
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">

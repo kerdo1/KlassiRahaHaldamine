@@ -16,14 +16,12 @@
             <Grid>
                 <Button Grid.Column="0"
                         Text="↩"
-                        TextColor="#2D4D3A"
                         FontSize="Small"
                         VerticalOptions="Start"
                         HorizontalOptions="Start"
                         Clicked="OnBackEventClicked"/>
                 <Button Grid.Column="1" 
                         Text="+" 
-                        TextColor="#2D4D3A"
                         FontAttributes="Bold"
                         FontSize="Medium"
                         Padding="10,0,10,5"

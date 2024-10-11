@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using Microsoft.Maui.Controls;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace KlassiRahaHaldamine.Converters
 {
-    public class EventDateToColorConverter : IValueConverter
+    public class StudentNegativeAmountColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is DateTime eventDate && eventDate < DateTime.Now)
+            if (value is decimal amount && amount <= 0)
             {
-                return Colors.Gray;
+                return Colors.Red;
             }
-            return null;
+            return null; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
