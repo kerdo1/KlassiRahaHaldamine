@@ -17,8 +17,8 @@
         <Entry x:Name="LastNameEntry" Placeholder="Perekonnanimi" />
         <Entry x:Name="AmountEntry" Placeholder="Summa" />
         <Entry x:Name="ContactNameEntry" Placeholder="Kontakt" />
-        <Entry x:Name="ContactEmailEntry" Placeholder="Kontakt e-post" />
-        <Entry x:Name="ContactNumber" Placeholder="Kontakt telefon" />
+        <Entry x:Name="ContactEmailEntry" Placeholder="Kontakti e-post" />
+        <Entry x:Name="ContactNumber" Placeholder="Kontakti telefon" />
         <Button Text="Salvesta" Clicked="OnSaveStudentClicked" BackgroundColor="#3F6C51" TextColor="#F3F7F5" />
     </VerticalStackLayout>
 </ContentPage>
