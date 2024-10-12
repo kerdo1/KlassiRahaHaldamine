@@ -3,7 +3,6 @@ using KlassiRahaHaldamine.Models;
 using KlassiRahaHaldamine.Views;
 using KlassiRahaHaldamine.Views.Events;
 using KlassiRahaHaldamine.Views.Students;
-using Microsoft.Extensions.Logging;
 
 namespace KlassiRahaHaldamine
 {

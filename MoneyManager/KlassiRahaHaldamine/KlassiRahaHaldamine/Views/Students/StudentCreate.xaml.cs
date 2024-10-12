@@ -6,8 +6,8 @@ namespace KlassiRahaHaldamine.Views.Students;
 
 public partial class CreateUpdateStudent : ContentPage
 {
-	public CreateUpdateStudent()
-	{
+    public CreateUpdateStudent()
+    {
         InitializeComponent();
     }
     private async void OnBackToStudentsClicked(object sender, EventArgs e)
@@ -37,19 +37,19 @@ public partial class CreateUpdateStudent : ContentPage
 
         if (string.IsNullOrWhiteSpace(ContactNumberEntry.Text))
         {
-            await DisplayAlert("Viga", "Palun sisesta õpilase kontakt number.", "OK");
+            await DisplayAlert("Viga", "Palun sisesta õpilase kontakti telefon.", "OK");
             return;
         }
 
         if (string.IsNullOrWhiteSpace(ContactEmailEntry.Text))
         {
-            await DisplayAlert("Viga", "Palun sisesta õpilase kontakt meil.", "OK");
+            await DisplayAlert("Viga", "Palun sisesta õpilase kontakti e-post.", "OK");
             return;
         }
 
         if (!IsValidEmail(ContactEmailEntry.Text))
         {
-            await DisplayAlert("Viga", "Palun sisesta kehtiv meili aadress.", "OK");
+            await DisplayAlert("Viga", "Palun sisesta kehtiv e-posti aadress.", "OK");
             return;
         }
 

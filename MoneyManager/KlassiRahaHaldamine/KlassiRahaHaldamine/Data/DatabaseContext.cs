@@ -1,8 +1,4 @@
 using SQLite;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace KlassiRahaHaldamine.Data
 {

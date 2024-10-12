@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:KlassiRahaHaldamine.Models"
+             x:Class="KlassiRahaHaldamine.Views.Students.CreateUpdateStudent"
+             Title="Lisa õpilane">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Button Grid.Column="0"
+                Text="↩"
+                TextColor="#2D4D3A"
+                FontSize="Small"             
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnBackToStudentsClicked"/>
+
+        <Entry x:Name="FirstNameEntry" Placeholder="Eesnimi" />
+        <Entry x:Name="LastNameEntry" Placeholder="Perekonnanimi" />
+        <Entry x:Name="AmountEntry" Placeholder="Summa" Keyboard="Numeric" />
+        <Entry x:Name="ContactNameEntry" Placeholder="Kontakt" />
+        <Entry x:Name="ContactEmailEntry" Placeholder="Kontakti e-post" />
+        <Entry x:Name="ContactNumberEntry" Placeholder="Kontakti telefon" Keyboard="Numeric" Margin="0,10" />
+
+        <Button Text="Salvesta" Clicked="OnSaveStudentClicked" BackgroundColor="#3F6C51" TextColor="#F3F7F5" />
+    </VerticalStackLayout>
+
+</ContentPage>
+    

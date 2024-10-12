@@ -59,27 +59,24 @@
                                            FontAttributes="Bold" 
                                            FontSize="Small" 
                                            HorizontalOptions="End"
-                                           VerticalOptions="Center" />
+                                           VerticalOptions="Center"
+                                           TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
+  
                                 </Frame>
                                 <Label Text="{Binding FirstName}" 
                                        FontAttributes="Bold" 
                                        FontSize="Micro" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Start"
-                                       TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
-
+                                       HorizontalOptions="Start"/>
 
                                 <Label Text="{Binding LastName}" 
                                        FontAttributes="Bold" 
                                        FontSize="Micro" 
                                        VerticalOptions="Center" 
-                                       HorizontalOptions="Start"
-                                       TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
-                                
+                                       HorizontalOptions="Start"/>
                             </StackLayout>
 
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-
                                 <Button Text="?" 
                                         FontSize="Medium"
 
