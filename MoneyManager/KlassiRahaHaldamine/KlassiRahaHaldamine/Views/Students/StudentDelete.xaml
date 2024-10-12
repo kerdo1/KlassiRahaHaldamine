@@ -42,6 +42,6 @@
                FontSize="Medium"
                HorizontalOptions="Center" />
 
-        <Button Text="Kustuta" Clicked="OnConfirmDeleteClicked" BackgroundColor="Red" TextColor="White"/>
+        <Button Text="Kustuta" Clicked="OnConfirmDeleteClicked" BackgroundColor="#FF4500" TextColor="White"/>
     </VerticalStackLayout>
 </ContentPage>

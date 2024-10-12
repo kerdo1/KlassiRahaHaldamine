@@ -13,7 +13,7 @@ namespace KlassiRahaHaldamine.Converters
         {
             if (value is decimal amount && amount <= 0)
             {
-                return Colors.Red;
+                return Colors.OrangeRed;
             }
             return null; 
         }

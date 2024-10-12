@@ -17,18 +17,18 @@
 
     <Color x:Key="White">#F3F7F5</Color>
     <Color x:Key="Black">#1F3326</Color>
-    <Color x:Key="Magenta">#FF0000</Color>
+    <Color x:Key="OrangeRed">#FF4500</Color>
     <Color x:Key="MidnightBlue">#3F6C51</Color>
     <Color x:Key="OffBlack">#1F3326</Color>
 
-    <Color x:Key="Gray100">#E7EFEB</Color>
-    <Color x:Key="Gray200">#DAE7E0</Color>
-    <Color x:Key="Gray300">#CEDFD6</Color>
-    <Color x:Key="Gray400">#B4CFC0</Color>
-    <Color x:Key="Gray500">#9BBFAC</Color>
-    <Color x:Key="Gray600">#83AF98</Color>
-    <Color x:Key="Gray900">#5F957A</Color>
-    <Color x:Key="Gray950">#48705C</Color>
+    <Color x:Key="Gray950">#E7EFEB</Color>
+    <Color x:Key="Gray900">#DAE7E0</Color>
+    <Color x:Key="Gray600">#CEDFD6</Color>
+    <Color x:Key="Gray500">#B4CFC0</Color>
+    <Color x:Key="Gray400">#9BBFAC</Color>
+    <Color x:Key="Gray300">#83AF98</Color>
+    <Color x:Key="Gray200">#5F957A</Color>
+    <Color x:Key="Gray100">#48705C</Color>
     <Color x:Key="HunterGreen">#3F6C51</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>

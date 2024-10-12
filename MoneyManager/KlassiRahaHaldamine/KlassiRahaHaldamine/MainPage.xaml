@@ -13,12 +13,11 @@
                 Source="piggy.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
-                SemanticProperties.Description="pink piggy bank" />
+                SemanticProperties.Description="piggy bank" />
 
             <Frame
                 x:Name="MoneyFrame"
-                BackgroundColor="#CDDFD5"
-                BorderColor="Black"
+                BackgroundColor="#CDDFD5"              
                 CornerRadius="10"
                 Padding="20"
                 HorizontalOptions="Fill">
