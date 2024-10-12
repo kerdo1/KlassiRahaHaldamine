@@ -25,6 +25,11 @@ namespace KlassiRahaHaldamine.Views.Events
             EventPrice.Text = _eventItem.Price.ToString();
         }
 
+        private async void OnBackToEventsClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EventsIndex());
+        }
+
         private async void OnSaveEventClicked(object sender, EventArgs e)
         {
             int.TryParse(EventPrice.Text, out int eventPrice);

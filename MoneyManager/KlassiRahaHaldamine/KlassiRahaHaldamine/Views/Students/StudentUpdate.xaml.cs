@@ -22,6 +22,11 @@ namespace KlassiRahaHaldamine.Views.Students
             ContactNumber.Text = _studentItem.ContactNumber.ToString();
         }
 
+        private async void OnBackToStudentsClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new StudentsIndex());
+        }
+
         private async void OnSaveStudentClicked(object sender, EventArgs e)
         {
             // Parse values from UI

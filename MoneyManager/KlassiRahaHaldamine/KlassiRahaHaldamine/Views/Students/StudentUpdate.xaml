@@ -5,6 +5,14 @@
              Title="Uuenda õpilane">
     
     <VerticalStackLayout Padding="20" Spacing="15">
+        <Button Grid.Column="0"
+        Text="↩"
+        TextColor="#2D4D3A"
+        FontSize="Small"             
+        VerticalOptions="Start"
+        HorizontalOptions="Start"
+        Clicked="OnBackToStudentsClicked"/>
+
         <Entry x:Name="FirstNameEntry" Placeholder="Eesnimi" />
         <Entry x:Name="LastNameEntry" Placeholder="Perekonnanimi" />
         <Entry x:Name="AmountEntry" Placeholder="Summa" />
