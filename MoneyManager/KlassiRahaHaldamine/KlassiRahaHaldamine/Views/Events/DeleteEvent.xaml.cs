@@ -2,12 +2,12 @@ using KlassiRahaHaldamine.Data;
 
 namespace KlassiRahaHaldamine.Views.Events
 {
-    public partial class EventDelete : ContentPage
+    public partial class DeleteEvent : ContentPage
     {
         private Event _eventToDelete;
         private DatabaseContext _databaseContext;
 
-        public EventDelete(Event eventToDelete)
+        public DeleteEvent(Event eventToDelete)
         {
             InitializeComponent();
             _databaseContext = new DatabaseContext();

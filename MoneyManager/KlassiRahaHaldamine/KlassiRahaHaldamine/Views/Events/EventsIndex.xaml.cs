@@ -40,7 +40,7 @@ public partial class EventsIndex : ContentPage
 
     private async void OnCreateEventClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EventCreate());
+        await Navigation.PushAsync(new CreateUpdateEvent());
         LoadEvents(); // Refreshes the event list every time the page appears
     }
     private void OnDetailsClicked(object sender, EventArgs e)
@@ -56,13 +56,13 @@ public partial class EventsIndex : ContentPage
         //await Navigation.PushAsync(new EventsCreateUpdate());
         var button = (Button)sender;
         var eventItem = (Event)button.CommandParameter;
-        await Navigation.PushAsync(new EventsCreateUpdate(eventItem));
+        await Navigation.PushAsync(new CreateUpdateEvent(eventItem));
     }
     
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;
-        await Navigation.PushAsync(new EventDelete(eventItem));
+        await Navigation.PushAsync(new DeleteEvent(eventItem));
         LoadEvents(); // Refresh the list after deleting an event
     }
 }
