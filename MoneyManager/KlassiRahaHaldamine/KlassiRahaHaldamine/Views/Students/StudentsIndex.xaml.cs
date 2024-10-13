@@ -52,7 +52,7 @@ public partial class StudentsIndex : ContentPage
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
         var studentItem = (Student)((Button)sender).CommandParameter;
-        await Navigation.PushAsync(new StudentDelete(studentItem));
+        await Navigation.PushAsync(new DeleteStudent(studentItem));
         LoadStudents(); // Refresh the list after deleting a student
     }
     
@@ -70,7 +70,7 @@ public partial class StudentsIndex : ContentPage
         if (student != null)
         {
             // Navigate to the StudentUpdate page and pass the selected student
-            await Navigation.PushAsync(new StudentUpdate(student));
+            await Navigation.PushAsync(new CreateUpdateStudent(student));
         }
     }
     

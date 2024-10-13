@@ -75,7 +75,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 
-	  <MauiXaml Update="Views\Students\StudentCreate.xaml">
+	  <MauiXaml Update="Views\Students\CreateUpdateStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 
@@ -83,8 +83,12 @@
 	    <DependentUpon>EventUpdate.xaml</DependentUpon>
 	  </Compile>
 
-	  <Compile Update="Views\Students\StudentCreate.xaml.cs">
-	    <DependentUpon>StudentCreate.xaml</DependentUpon>
+	  <Compile Update="Views\Students\CreateUpdateStudent.xaml.cs">
+	    <DependentUpon>CreateUpdateStudent.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Students\DeleteStudent.xaml.cs">
+	    <DependentUpon>DeleteStudent.xaml</DependentUpon>
 	  </Compile>
 
 
@@ -103,10 +107,6 @@
 	  <MauiXaml Update="Views\Events\EventsIndex.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-
-	  <MauiXaml Update="Views\Students\StudentUpdate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
  
 	</ItemGroup>
 
@@ -115,7 +115,7 @@
 	  <MauiXaml Update="Views\Events\Popup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Students\StudentDelete.xaml">
+	  <MauiXaml Update="Views\Students\DeleteStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Students\StudentsIndex.xaml">

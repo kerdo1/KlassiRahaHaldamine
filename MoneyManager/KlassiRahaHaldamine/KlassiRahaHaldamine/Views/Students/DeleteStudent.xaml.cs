@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace KlassiRahaHaldamine.Views.Students;
 
-public partial class StudentDelete : ContentPage
+public partial class DeleteStudent : ContentPage
 {
     private Student _studentToDelete;
     private DatabaseContext _databaseContext;
-    public StudentDelete(Student studentToDelete)
+    public DeleteStudent(Student studentToDelete)
     {
         InitializeComponent();
         _databaseContext = new DatabaseContext();

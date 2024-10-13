@@ -10,6 +10,21 @@ public partial class CreateUpdateStudent : ContentPage
     {
         InitializeComponent();
     }
+
+    private Student _studentItem;
+    public CreateUpdateStudent(Student studentItem)
+    {
+        InitializeComponent();
+        _studentItem = studentItem;
+        Title = _studentItem == null ? "Lisa õpilane" : "Uuenda õpilane";
+
+        FirstNameEntry.Text = _studentItem.FirstName;
+        LastNameEntry.Text = _studentItem.LastName;
+        AmountEntry.Text = _studentItem.Amount.ToString();
+        ContactNameEntry.Text = _studentItem.ContactName;
+        ContactEmailEntry.Text = _studentItem.ContactEmail;
+        ContactNumberEntry.Text = _studentItem.ContactNumber.ToString();
+    }
     private async void OnBackToStudentsClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new StudentsIndex());
@@ -35,12 +50,6 @@ public partial class CreateUpdateStudent : ContentPage
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(ContactNumberEntry.Text))
-        {
-            await DisplayAlert("Viga", "Palun sisesta õpilase kontakti telefon.", "OK");
-            return;
-        }
-
         if (string.IsNullOrWhiteSpace(ContactEmailEntry.Text))
         {
             await DisplayAlert("Viga", "Palun sisesta õpilase kontakti e-post.", "OK");
@@ -53,22 +62,44 @@ public partial class CreateUpdateStudent : ContentPage
             return;
         }
 
+        if (string.IsNullOrWhiteSpace(ContactNumberEntry.Text))
+        {
+            await DisplayAlert("Viga", "Palun sisesta õpilase kontakti telefon.", "OK");
+            return;
+        }
+
         decimal.TryParse(AmountEntry.Text, out decimal amount);
         int.TryParse(ContactNumberEntry.Text, out int contactNumber);
 
-        var newStudent = new Student
-        {
-            FirstName = FirstNameEntry.Text,
-            LastName = LastNameEntry.Text,
-            Amount = amount,
-            ContactName = ContactNameEntry.Text,
-            ContactEmail = ContactEmailEntry.Text,
-            ContactNumber = contactNumber.ToString()
-        };
-
         var databaseContext = new DatabaseContext();
 
-        await databaseContext.AddItemAsync(newStudent);
+        if (_studentItem == null)
+        {
+            // Create a new student
+            var newStudent = new Student
+            {
+                FirstName = FirstNameEntry.Text,
+                LastName = LastNameEntry.Text,
+                Amount = amount,
+                ContactName = ContactNameEntry.Text,
+                ContactEmail = ContactEmailEntry.Text,
+                ContactNumber = contactNumber.ToString()
+            };
+
+            await databaseContext.AddItemAsync(newStudent);
+        }
+        else
+        {
+            // Update existing student
+            _studentItem.FirstName = FirstNameEntry.Text;
+            _studentItem.LastName = LastNameEntry.Text;
+            _studentItem.Amount = amount;
+            _studentItem.ContactName = ContactNameEntry.Text;
+            _studentItem.ContactEmail = ContactEmailEntry.Text;
+            _studentItem.ContactNumber = contactNumber.ToString();
+
+            await databaseContext.UpdateItemAsync(_studentItem);
+        }
 
         await Navigation.PopAsync();
     }
