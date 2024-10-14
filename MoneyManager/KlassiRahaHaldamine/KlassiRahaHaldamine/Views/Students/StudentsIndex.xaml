@@ -12,44 +12,34 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="30" >
+        <VerticalStackLayout Padding="20" Spacing="30">
 
             <Grid>
                 <Button Grid.Column="0"
                         Text="↩"
                         FontSize="Small"
                         VerticalOptions="Start"
-                    HorizontalOptions="Start"
-                    Clicked="OnBackEventClicked"/>
+                        HorizontalOptions="Start"
+                        Clicked="OnBackEventClicked"/>
                 <Button Grid.Column="1" 
-                    Text="+"
+                        Text="+"
                         FontAttributes="Bold"
                         FontSize="Medium"
                         Padding="10,0,10,5"
                         VerticalOptions="Start"
-                    HorizontalOptions="End"
-                    Clicked="OnCreateStudentClicked" />
+                        HorizontalOptions="End"
+                        Clicked="OnCreateStudentClicked" />
             </Grid>
 
+            <!-- CollectionView for students -->
             <CollectionView 
                 x:Name="StudentsCollectionView"
                 ItemsSource="{Binding Students}"
                 SelectionMode="None"
                 EmptyView="Õpilasi ei ole.">
 
-            <Button 
-                Text="Lisa õpilane" 
-                HorizontalOptions="Center"
-                Clicked="OnCreateStudentClicked" />
-
-            <ListView x:Name="StudentsListView" 
-                      ItemsSource="{Binding Students}"
-                      HasUnevenRows="True">
-                <ListView.ItemTemplate>
-
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-
                         <Grid Padding="0,0,0,10" ColumnSpacing="20">
 
                             <Grid.ColumnDefinitions>
@@ -64,13 +54,11 @@
                                        WidthRequest="44" 
                                        HeightRequest="40">
                                     <Label Text="{Binding Amount, StringFormat='{0:0}'}"                                    
- 
                                            FontAttributes="Bold" 
                                            FontSize="Small" 
                                            HorizontalOptions="End"
                                            VerticalOptions="Center"
                                            TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
-  
                                 </Frame>
                                 <Label Text="{Binding FirstName}" 
                                        FontAttributes="Bold" 
@@ -85,23 +73,18 @@
                                        HorizontalOptions="Start"/>
                             </StackLayout>
 
-
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
                                 <Button Text="?" 
                                         FontSize="Medium"
-
                                         CornerRadius="4" 
                                         Padding="10,3"
                                         Clicked="OnDetailsClicked"
-                                        CommandParameter="{Binding .}"
-                                         />
+                                        CommandParameter="{Binding .}" />
                                 <Button Text="✏️"                                    
                                         CornerRadius="4" 
                                         Padding="5,3"
                                         Clicked="OnUpdateStudentClicked"
                                         CommandParameter="{Binding .}"/>
-
-
                                 <Button Text="🗑️"                                        
                                         CornerRadius="4" 
                                         Padding="5,3"
@@ -112,6 +95,12 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <!-- Button to add a student outside the collection view -->
+            <Button 
+                Text="Lisa õpilane" 
+                HorizontalOptions="Center"
+                Clicked="OnCreateStudentClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
