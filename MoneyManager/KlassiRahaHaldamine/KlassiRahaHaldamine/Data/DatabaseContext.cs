@@ -1,15 +1,4 @@
-
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 using SQLite;
-
 
 namespace KlassiRahaHaldamine.Data
 {
@@ -42,6 +31,19 @@ namespace KlassiRahaHaldamine.Data
             return await _connection.Table<T>().ToListAsync();
         }
 
+        public async Task<bool> DeleteItemAsync<T>(T item) where T : class, new()
+        {
+            return await _connection.DeleteAsync(item) > 0;
+        }
+
+        public async Task<bool> UpdateItemAsync<T>(T item) where T : class, new()
+        {
+            await CreateTableIfNotExistsAsync<T>();
+
+            return await _connection.UpdateAsync(item) > 0;
+        }
+
         public async ValueTask DisposeAsync() => await _connection.CloseAsync();
+
     }
 }

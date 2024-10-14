@@ -13,29 +13,29 @@
                 Source="piggy.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
-                SemanticProperties.Description="pink piggy bank" />
+                SemanticProperties.Description="piggy bank" />
 
-            <!-- Kast rahasumma kuvamiseks, hiljem tuleb funktsioon siin välja kutsuda -->
             <Frame
                 x:Name="MoneyFrame"
-                BackgroundColor="LightGray"
-                BorderColor="Black"
+                BackgroundColor="#CDDFD5"              
                 CornerRadius="10"
                 Padding="20"
                 HorizontalOptions="Fill">
                 <Label
                     x:Name="MoneyLabel"
                     Text="Klassi raha kokku: 0"
+                    TextColor="#3F6C51"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    FontSize="36"
+                    FontAttributes="Bold"
+                    FontSize="44"
                     HorizontalTextAlignment="Center"  
                     VerticalTextAlignment="Center" />
 
             </Frame>
 
             <Button
-                x:Name="StudentsBtn"
+                x:Name="StudentsBtn"                
                 Text="Õpilased" 
                 Clicked="OnStudentsClicked"
                 HorizontalOptions="Fill"

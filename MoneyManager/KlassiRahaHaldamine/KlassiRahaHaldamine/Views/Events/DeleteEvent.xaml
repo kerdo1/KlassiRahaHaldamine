@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KlassiRahaHaldamine.Views.Events.DeleteEvent"
+             Title="Kustuta üritus">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Button Grid.Column="0"
+                Margin="0,0,0,20"
+                Text="↩"
+                TextColor="#2D4D3A"
+                FontSize="Small"             
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnBackToEventsClicked"/>
+       
+        <Label Text="{Binding Name}" 
+               FontAttributes="Bold"
+               FontSize="Large"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding EventDate, StringFormat='Ürituse kuupäev: {0:dd.MM.yyyy}'}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding Description}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding Price, StringFormat='Hind: {0}'}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
+
+        <Button Text="Kustuta" Clicked="OnConfirmDeleteClicked" BackgroundColor="OrangeRed" TextColor="White"/>
+    </VerticalStackLayout>
+</ContentPage>

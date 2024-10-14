@@ -1,46 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:KlassiRahaHaldamine.Converters"
              x:Class="KlassiRahaHaldamine.Views.Events.EventsIndex"
              Title="Üritused">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EventDateToColorConverter x:Key="EventDateToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Margin="0,50,0,0"
-            Spacing="25">
-
-            <Button
-                Text="Tagasi"
-                HorizontalOptions="Start"
-                Clicked="OnBackEventClicked"/>
-
-            <Button 
-                Text="Loo uus üritus" 
-                HorizontalOptions="Center"
-                Clicked="OnCreateEventClicked"/>
-
-            <ListView x:Name="EventsListView" 
-                      ItemsSource="{Binding Events}"
-                      HasUnevenRows="True">
-                <ListView.ItemTemplate>
+        <VerticalStackLayout Padding="20" Spacing="30">
+            <Grid>
+                <Button Grid.Column="0"
+                        Text="↩"
+                        FontSize="Small"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        Clicked="OnBackEventClicked"/>
+                <Button Grid.Column="1" 
+                        Text="+" 
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Padding="10,0,10,5"
+                        VerticalOptions="Start"
+                        HorizontalOptions="End"
+                        Clicked="OnCreateEventClicked" />
+            </Grid>
+            <CollectionView x:Name="EventsCollectionView"
+                            ItemsSource="{Binding Events}"
+                            SelectionMode="None"
+                            EmptyView="Üritusi ei ole.">
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
+                        <Grid Padding="0,0,0,10" ColumnSpacing="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" >
+                                <Frame x:Name="WalletFrame"                                 
+                                       BorderColor="#2D4D3A"
+                                       CornerRadius="4"
+                                       Padding="5,3"
+                                       WidthRequest="55" 
+                                       HeightRequest="40">
+                                    <Label Text="{Binding Price, StringFormat='{0:0}'}"                              
+                                           FontAttributes="Bold" 
+                                           FontSize="Small"
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Center" />
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="End" >
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold" 
-                                       FontSize="Medium" 
-                                       VerticalOptions="Center" 
-                                       HorizontalOptions="CenterAndExpand" />
-
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                    <Button Text="Detailid" Clicked="OnDetailsClicked" CommandParameter="{Binding .}" />
-                                    <Button Text="Muuda" Clicked="OnEditClicked" CommandParameter="{Binding .}" />
-                                    <Button Text="Kustuta" Clicked="OnDeleteClicked" CommandParameter="{Binding .}" />
-                                </StackLayout>
+                                       FontSize="Small" 
+                                       VerticalOptions="Center"
+                                       TextColor="{Binding EventDate, Converter={StaticResource EventDateToColorConverter}}" />
                             </StackLayout>
-                        </ViewCell>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
+                                
+                                <Button Text="?"
+                                        FontSize="Medium"
+                                        CornerRadius="4"
+                                        Padding="10,3"
+                                        Clicked="OnDetailsClicked" 
+                                        CommandParameter="{Binding .}" />
+                                <Button Text="✏️"
+                                        CornerRadius="4"
+                                        Padding="5,3"
+                                        Clicked="OnEditClicked" 
+                                        CommandParameter="{Binding .}" />
+                                <Button Text="🗑️"
+                                        CornerRadius="4"
+                                        Padding="5,3"
+                                        Clicked="OnDeleteClicked"
+                                        CommandParameter="{Binding .}" />
+                            </StackLayout>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+    

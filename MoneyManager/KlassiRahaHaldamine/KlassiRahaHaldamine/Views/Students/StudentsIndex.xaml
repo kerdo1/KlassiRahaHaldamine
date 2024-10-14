@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:KlassiRahaHaldamine.Converters"
              x:Class="KlassiRahaHaldamine.Views.Students.StudentsIndex"
-             Title="">
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Margin="0,50,0,0"
-            Spacing="25">
+             Title="Õpilased">
 
-            <Button
-                Text="Tagasi"
-                HorizontalOptions="Start"
-                Clicked="OnBackEventClicked"/>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StudentNegativeAmountColorConverter x:Key="StudentNegativeAmountColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="30" >
+
+            <Grid>
+                <Button Grid.Column="0"
+                        Text="↩"
+                        FontSize="Small"
+                        VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    Clicked="OnBackEventClicked"/>
+                <Button Grid.Column="1" 
+                    Text="+"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Padding="10,0,10,5"
+                        VerticalOptions="Start"
+                    HorizontalOptions="End"
+                    Clicked="OnCreateStudentClicked" />
+            </Grid>
+
+            <CollectionView 
+                x:Name="StudentsCollectionView"
+                ItemsSource="{Binding Students}"
+                SelectionMode="None"
+                EmptyView="Õpilasi ei ole.">
 
             <Button 
                 Text="Lisa õpilane" 
@@ -23,37 +46,72 @@
                       ItemsSource="{Binding Students}"
                       HasUnevenRows="True">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" Padding="10">
-                                <HorizontalStackLayout>
-                                    <Label Text="{Binding FirstName}" 
-                                           FontAttributes="Bold" 
-                                           FontSize="Medium" 
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="CenterAndExpand" />
-                                    <Label Text="{Binding LastName}" 
-                                           FontAttributes="Bold" 
-                                           FontSize="Medium" 
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="CenterAndExpand" />
-                                    <Label Text="{Binding Amount}" 
-                                           FontAttributes="Bold" 
-                                           FontSize="Medium" 
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="CenterAndExpand" />
-                                </HorizontalStackLayout>
 
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                    <Button Text="Detailid" CommandParameter="{Binding .}" Clicked="OnDetailsClicked" />
-                                    <Button Text="Muuda" />
-                                    <Button Text="Kustuta" />
-                                </StackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="0,0,0,10" ColumnSpacing="20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
+                                <Frame                                                                 
+                                       CornerRadius="4"
+                                       Padding="5,3"
+                                       WidthRequest="44" 
+                                       HeightRequest="40">
+                                    <Label Text="{Binding Amount, StringFormat='{0:0}'}"                                    
+ 
+                                           FontAttributes="Bold" 
+                                           FontSize="Small" 
+                                           HorizontalOptions="End"
+                                           VerticalOptions="Center"
+                                           TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
+  
+                                </Frame>
+                                <Label Text="{Binding FirstName}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Micro" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Start"/>
+
+                                <Label Text="{Binding LastName}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="Micro" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="Start"/>
                             </StackLayout>
-                        </ViewCell>
+
+
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
+                                <Button Text="?" 
+                                        FontSize="Medium"
+
+                                        CornerRadius="4" 
+                                        Padding="10,3"
+                                        Clicked="OnDetailsClicked"
+                                        CommandParameter="{Binding .}"
+                                         />
+                                <Button Text="✏️"                                    
+                                        CornerRadius="4" 
+                                        Padding="5,3"
+                                        Clicked="OnUpdateStudentClicked"
+                                        CommandParameter="{Binding .}"/>
+
+
+                                <Button Text="🗑️"                                        
+                                        CornerRadius="4" 
+                                        Padding="5,3"
+                                        Clicked="OnDeleteClicked"
+                                        CommandParameter="{Binding .}"/>
+                            </StackLayout>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

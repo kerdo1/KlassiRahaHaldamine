@@ -71,7 +71,7 @@
 
 	<ItemGroup>
 
-	  <MauiXaml Update="Views\Events\EventDetailsPage.xaml">
+	  <MauiXaml Update="Views\Events\EventUpdate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 
@@ -83,19 +83,40 @@
 	    <DependentUpon>EventDetailsPage.xaml</DependentUpon>
 	  </Compile>
 
+	  <Compile Update="Views\Events\DeleteEvent.xaml.cs">
+	    <DependentUpon>DeleteEvent.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Events\CreateUpdateEvent.xaml.cs">
+	    <DependentUpon>CreateUpdateEvent.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Events\EventUpdate.xaml.cs">
+	    <DependentUpon>EventUpdate.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Students\CreateUpdateStudent.xaml.cs">
+	    <DependentUpon>CreateUpdateStudent.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Students\DeleteStudent.xaml.cs">
+	    <DependentUpon>DeleteStudent.xaml</DependentUpon>
+	  </Compile>
+
+
 	  <Compile Update="Views\Students\StudentsIndex.xaml.cs">
 	    <DependentUpon>StudentsIndex.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Events\EventCreate.xaml">
+	  <MauiXaml Update="Views\Events\CreateUpdateEvent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Events\DeleteEvent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Events\EventsIndex.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Students\CreateUpdateStudent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Students\StudentDetailsPage.xaml">
@@ -105,5 +126,18 @@
    	</ItemGroup>
 
 
+	<ItemGroup>
+
+	  <MauiXaml Update="Views\Events\Popup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Students\DeleteStudent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Students\StudentsIndex.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+
+	</ItemGroup>
 
 </Project>

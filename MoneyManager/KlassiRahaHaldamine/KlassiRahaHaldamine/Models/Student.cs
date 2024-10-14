@@ -1,13 +1,17 @@
-﻿
+﻿using SQLite;
+
 namespace KlassiRahaHaldamine.Models
 {
     public class Student
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; } 
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public decimal Amount { get; set; }
         public string ContactName { get; set; }
         public string ContactNumber { get; set; }
+        public string ContactEmail { get; set; }
 
         public Student() { }
 
