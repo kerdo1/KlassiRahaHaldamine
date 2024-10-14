@@ -55,13 +55,17 @@ public partial class StudentsIndex : ContentPage
         await Navigation.PushAsync(new DeleteStudent(studentItem));
         LoadStudents(); // Refresh the list after deleting a student
     }
-    
-    private void OnDetailsClicked(object sender, EventArgs e)
+
+    private async void OnDetailsClicked(object sender, EventArgs e)
     {
         var studentItem = (Student)((Button)sender).CommandParameter;
-        // Open detail view
+        if (studentItem != null)
+        {
+            // Navigate to the StudentDetails page and pass the selected student
+            await Navigation.PushAsync(new StudentDetails(studentItem));
+        }
     }
-    
+
     private async void OnUpdateStudentClicked(object sender, EventArgs e)
     {
         var button = sender as Button;

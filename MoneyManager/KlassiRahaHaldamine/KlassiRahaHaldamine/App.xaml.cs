@@ -16,6 +16,7 @@ namespace KlassiRahaHaldamine
         public App()
         {
             InitializeComponent();
+            MainPage = new NavigationPage(new MainPage()); // Ensure a NavigationPage is used
 
 #if WINDOWS
         Microsoft.Maui.Handlers.WindowHandler.Mapper.AppendToMapping(nameof(IWindow), (handler, view) =>

@@ -43,10 +43,14 @@ public partial class EventsIndex : ContentPage
         await Navigation.PushAsync(new CreateUpdateEvent());
         LoadEvents(); // Refreshes the event list every time the page appears
     }
-    private void OnDetailsClicked(object sender, EventArgs e)
+    private async void OnDetailsClicked(object sender, EventArgs e)
     {
         var eventItem = (Event)((Button)sender).CommandParameter;
-        // Open detail view
+        if (eventItem != null)
+        {
+            // Navigate to the EventDetails page and pass the selected event
+            await Navigation.PushAsync(new EventDetails(eventItem));
+        }
     }
 
     private async void OnEditClicked(object sender, EventArgs e)

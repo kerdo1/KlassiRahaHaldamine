@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:KlassiRahaHaldamine.Models"
+             x:Class="KlassiRahaHaldamine.Views.Students.StudentDetails"
+             Title="Õpilase detailid">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Button Grid.Column="0"
+                Text="↩ Tagasi"
+                TextColor="#2D4D3A"
+                FontSize="Small"             
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnBackToStudentsClicked"/>
+
+        <Label Text="Eesnimi" FontAttributes="Bold" />
+        <Label x:Name="FirstNameLabel" />
+
+        <Label Text="Perekonnanimi" FontAttributes="Bold" />
+        <Label x:Name="LastNameLabel" />
+
+        <Label Text="Summa" FontAttributes="Bold" />
+        <Label x:Name="AmountLabel" />
+
+        <Label Text="Kontakti nimi" FontAttributes="Bold" />
+        <Label x:Name="ContactNameLabel" />
+
+        <Label Text="Kontakti e-post" FontAttributes="Bold" />
+        <Label x:Name="ContactEmailLabel" />
+
+        <Label Text="Kontakti telefon" FontAttributes="Bold" />
+        <Label x:Name="ContactNumberLabel" />
+
+        <!-- Optionally add buttons for editing or deleting the student -->
+
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -63,13 +63,14 @@
                                        TextColor="{Binding EventDate, Converter={StaticResource EventDateToColorConverter}}" />
                             </StackLayout>
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-                                
+
                                 <Button Text="?"
                                         FontSize="Medium"
                                         CornerRadius="4"
                                         Padding="10,3"
                                         Clicked="OnDetailsClicked" 
-                                        CommandParameter="{Binding .}" />
+                                        CommandParameter="{Binding .}" />  
+
                                 <Button Text="✏️"
                                         CornerRadius="4"
                                         Padding="5,3"
