@@ -21,6 +21,17 @@ public partial class EventsIndex : ContentPage
     {
         var events = await _databaseContext.GetAllAsync<Event>();
 
+        private async void OnDetailsClicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var eventItem = (Event)button.CommandParameter; // Get the selected event object
+
+            // Navigate to the EventDetailsPage and pass the event object
+            await Navigation.PushAsync(new EventDetailsPage(eventItem));
+        }
+
+
+        private void OnEditClicked(object sender, EventArgs e)
         // Sort events by event date
         var sortedEvents = events
             .OrderBy(e => e.EventDate < DateTime.Now) // Past events move to the end

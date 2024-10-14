@@ -37,6 +37,15 @@
                 SelectionMode="None"
                 EmptyView="Õpilasi ei ole.">
 
+            <Button 
+                Text="Lisa õpilane" 
+                HorizontalOptions="Center"
+                Clicked="OnCreateStudentClicked" />
+
+            <ListView x:Name="StudentsListView" 
+                      ItemsSource="{Binding Students}"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -76,6 +85,7 @@
                                        HorizontalOptions="Start"/>
                             </StackLayout>
 
+
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
                                 <Button Text="?" 
                                         FontSize="Medium"
@@ -104,6 +114,4 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
-    

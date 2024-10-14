@@ -48,6 +48,7 @@ public partial class StudentsIndex : ContentPage
         //LoadStudents();
         await Navigation.PushAsync(new CreateUpdateStudent());
     }
+
     
     private async void OnDeleteClicked(object sender, EventArgs e)
     {

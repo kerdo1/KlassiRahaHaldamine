@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KlassiRahaHaldamine.Views.Students.StudentDetailsPage"
+             Title="Student Details">
+    <ScrollView>
+        <VerticalStackLayout Padding="30">
+            <Label Text="Details"
+                   FontSize="32"
+                   HorizontalOptions="Center" />
+            <Label Text="First Name:"
+                   FontAttributes="Bold" />
+            <Label x:Name="FirstNameLabel" />
+
+            <Label Text="Last Name:"
+                   FontAttributes="Bold" />
+            <Label x:Name="LastNameLabel" />
+
+            <Label Text="Amount:"
+                   FontAttributes="Bold" />
+            <Label x:Name="AmountLabel" />
+
+            <Label Text="Contact Name:"
+                   FontAttributes="Bold" />
+            <Label x:Name="ContactNameLabel" />
+
+            <Label Text="Contact Number:"
+                   FontAttributes="Bold" />
+            <Label x:Name="ContactNumberLabel" />
+
+            <!-- Add the Back button here -->
+            <Button Text="Back"
+                    HorizontalOptions="Center"
+                    Clicked="OnBackButtonClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
