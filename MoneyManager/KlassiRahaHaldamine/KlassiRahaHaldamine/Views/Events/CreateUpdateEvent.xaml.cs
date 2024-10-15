@@ -123,11 +123,26 @@ namespace KlassiRahaHaldamine.Views.Events
                 // Save data to database
                 await _databaseContext.AddItemAsync(newEvent);
 
+                //Save relationships between the event and selected students
+                await SaveEventStudents(newEvent.Id);
+
                 // Back to event list
                 await Navigation.PopAsync();
             };
 
             await Navigation.PushModalAsync(popup);
+        }
+        private async Task SaveEventStudents(int eventId)
+        {
+            foreach (var student in studentList.Where(s => s.IsSelected))
+            {
+                var eventStudent = new EventStudent
+                {
+                    EventId = eventId,
+                    StudentId = student.Id
+                };
+                await _databaseContext.AddEventStudentAsync(eventStudent);
+            }
         }
 
         private async Task SplitEventCostAmongStudents(Event newEvent)

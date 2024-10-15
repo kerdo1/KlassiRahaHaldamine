@@ -95,12 +95,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-            <!-- Button to add a student outside the collection view -->
-            <Button 
-                Text="Lisa õpilane" 
-                HorizontalOptions="Center"
-                Clicked="OnCreateStudentClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
