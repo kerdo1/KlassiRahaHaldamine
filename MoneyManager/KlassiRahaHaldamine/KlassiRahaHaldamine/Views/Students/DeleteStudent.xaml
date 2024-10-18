@@ -4,9 +4,8 @@
              x:Class="KlassiRahaHaldamine.Views.Students.DeleteStudent"
              Title="Kustuta õpilane">
     <VerticalStackLayout Padding="20" Spacing="15">
-        <Button Grid.Column="0"
+        <Button 
                 Text="↩"
-                TextColor="#2D4D3A"
                 FontSize="Small"             
                 VerticalOptions="Start"
                 HorizontalOptions="Start"
@@ -42,6 +41,16 @@
                FontSize="Medium"
                HorizontalOptions="Center" />
 
-        <Button Text="Kustuta" Clicked="OnConfirmDeleteClicked" BackgroundColor="#FF4500" TextColor="White"/>
+        <Button Text="Kustuta" 
+                Clicked="OnConfirmDeleteClicked" 
+                BackgroundColor="{StaticResource PiggyRed}" 
+                TextColor="White">
+            <Button.Shadow>
+                <Shadow Brush="{StaticResource PiggyRed}"
+                Offset="3,3"
+                Radius="3"
+                Opacity="0.3"/>
+            </Button.Shadow>
+        </Button>
     </VerticalStackLayout>
 </ContentPage>

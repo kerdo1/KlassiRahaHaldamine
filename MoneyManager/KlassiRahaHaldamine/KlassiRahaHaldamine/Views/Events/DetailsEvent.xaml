@@ -8,25 +8,27 @@
 
         <Button Grid.Column="0"
                 Margin="0,0,0,20"
-                Text="↩ Tagasi"
-                TextColor="#2D4D3A"
+                Text="↩"
                 FontSize="Small"
                 VerticalOptions="Start"
                 HorizontalOptions="Start"
                 Clicked="OnBackToEventsClicked"/>
-
-        <Label Text="Ürituse nimi" FontAttributes="Bold" />
-        <Label x:Name="EventNameLabel" />
-
-        <Label Text="Kuupäev" FontAttributes="Bold" />
-        <Label x:Name="EventDateLabel" />
-
-        <Label Text="Kirjeldus" FontAttributes="Bold" />
-        <Label x:Name="EventDescriptionLabel" />
-
-        <Label Text="Hind" FontAttributes="Bold" />
-        <Label x:Name="EventPriceLabel" />
-
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Ürituse nimi:" FontAttributes="Bold" FontSize="22" />
+            <Label x:Name="EventNameLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Kuupäev:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="EventDateLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Kirjeldus:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="EventDescriptionLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Hind:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="EventPriceLabel" FontSize="22"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 
 </ContentPage>
