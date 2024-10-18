@@ -7,9 +7,8 @@
 
     <VerticalStackLayout Padding="20" Spacing="15">
 
-        <Button Grid.Column="0"
+        <Button 
                 Text="↩"
-                TextColor="#2D4D3A"
                 FontSize="Small"             
                 VerticalOptions="Start"
                 HorizontalOptions="Start"
@@ -22,7 +21,16 @@
         <Entry x:Name="ContactEmailEntry" Placeholder="Kontakti e-post" />
         <Entry x:Name="ContactNumberEntry" Placeholder="Kontakti telefon" Keyboard="Numeric" Margin="0,10" />
 
-        <Button Text="Salvesta" Clicked="OnSaveStudentClicked" BackgroundColor="#3F6C51" TextColor="#F3F7F5" />
+        <Button Text="Salvesta" 
+                Clicked="OnSaveStudentClicked" 
+                Style="{StaticResource ButtonStyle}">
+            <Button.Shadow>
+                <Shadow Brush="#CCAD00"
+                Offset="3,3"
+                Radius="3"
+                Opacity="0.3"/>
+            </Button.Shadow>
+        </Button>
     </VerticalStackLayout>
 
 </ContentPage>
