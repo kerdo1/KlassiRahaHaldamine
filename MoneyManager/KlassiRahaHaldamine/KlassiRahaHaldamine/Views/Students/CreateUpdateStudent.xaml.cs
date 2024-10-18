@@ -20,7 +20,7 @@ public partial class CreateUpdateStudent : ContentPage
 
         FirstNameEntry.Text = _studentItem.FirstName;
         LastNameEntry.Text = _studentItem.LastName;
-        AmountEntry.Text = _studentItem.Amount.ToString();
+        AmountEntry.Text = _studentItem.Amount.ToString("F2");
         ContactNameEntry.Text = _studentItem.ContactName;
         ContactEmailEntry.Text = _studentItem.ContactEmail;
         ContactNumberEntry.Text = _studentItem.ContactNumber.ToString();

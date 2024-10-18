@@ -85,10 +85,6 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
 
-        <Compile Update="Views\Events\EventDetailsPage.xaml.cs">
-            <DependentUpon>EventDetailsPage.xaml</DependentUpon>
-        </Compile>
-
         <Compile Update="Views\Events\DeleteEvent.xaml.cs">
             <DependentUpon>DeleteEvent.xaml</DependentUpon>
         </Compile>
@@ -123,9 +119,6 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Views\Events\EventsIndex.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </MauiXaml>
-        <MauiXaml Update="Views\Students\StudentDetailsPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <Folder Include="Services\" />
