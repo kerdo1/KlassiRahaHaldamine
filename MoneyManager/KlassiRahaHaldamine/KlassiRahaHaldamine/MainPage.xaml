@@ -13,19 +13,25 @@
                 Source="piggy.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
-                SemanticProperties.Description="pink piggy bank" />
+                SemanticProperties.Description="piggy bank" >
+                <Image.Shadow>
+                    <Shadow Brush="{StaticResource PiggyRed}"
+                            Offset="3,3"
+                            Radius="3"
+                            Opacity="0.3"/>
+                </Image.Shadow>
+            </Image>
 
             <Frame
                 x:Name="MoneyFrame"
-                BackgroundColor="#CDDFD5"
-                BorderColor="Black"
+                BackgroundColor="#FDF3C3"
                 CornerRadius="10"
                 Padding="20"
                 HorizontalOptions="Fill">
                 <Label
                     x:Name="MoneyLabel"
                     Text="Klassi raha kokku: 0"
-                    TextColor="#3F6C51"
+                    TextColor="{StaticResource Black}"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     FontAttributes="Bold"
@@ -40,14 +46,28 @@
                 Text="Õpilased" 
                 Clicked="OnStudentsClicked"
                 HorizontalOptions="Fill"
-                Style="{StaticResource ButtonStyle}"/>
+                Style="{StaticResource ButtonStyle}">
+                <Button.Shadow>
+                    <Shadow Brush="#CCAD00"
+                            Offset="3,3"
+                            Radius="3"
+                            Opacity="0.3"/>
+                    </Button.Shadow>
+            </Button>
 
             <Button
                  x:Name="EventsBtn"
                  Text="Üritused" 
                  Clicked="OnEventsClicked"
                  HorizontalOptions="Fill"
-                 Style="{StaticResource ButtonStyle}"/>
+                 Style="{StaticResource ButtonStyle}">
+                <Button.Shadow>
+                    <Shadow Brush="#CCAD00"
+                            Offset="3,3"
+                            Radius="3"
+                            Opacity="0.3"/>
+                </Button.Shadow>
+            </Button>
 
         </VerticalStackLayout>
 

@@ -1,23 +1,38 @@
 using KlassiRahaHaldamine.Data;
 using KlassiRahaHaldamine.Models;
 using KlassiRahaHaldamine.ViewModels;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+using KlassiRahaHaldamine.Services;
 
 namespace KlassiRahaHaldamine.Views.Events
 {
-    public partial class EventCreate : ContentPage
+    public partial class CreateUpdateEvent : ContentPage
     {
         private readonly DatabaseContext _databaseContext;
+        private readonly EmailService _emailService;
         private ObservableCollection<StudentViewModel> studentList;
         private Event newEvent; // Add a class-level variable
 
-        public EventCreate()
+        public CreateUpdateEvent()
         {
             InitializeComponent();
             _databaseContext = new DatabaseContext();
+            _emailService = new EmailService();
+        }
+
+        private Event _eventItem;
+
+        // Constructor for updating an existing event
+        public CreateUpdateEvent(Event eventItem) : this()
+        {
+            _eventItem = eventItem;
+            Title = _eventItem == null ? "Lisa üritus" : "Uuenda üritus";
+
+            // Populate the fields with the existing event data
+            NameEntry.Text = _eventItem.Name;
+            EventDatePicker.Date = _eventItem.EventDate;
+            DescriptionEntry.Text = _eventItem.Description;
+            EventPrice.Text = _eventItem.Price.ToString();
         }
 
         private async void OnBackToEventsClicked(object sender, EventArgs e)
@@ -34,29 +49,42 @@ namespace KlassiRahaHaldamine.Views.Events
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(EventPrice.Text) || !decimal.TryParse(EventPrice.Text, out decimal eventPrice))
-            {
-                await DisplayAlert("Viga", "Palun sisesta ürituse hind.", "OK");
-                return;
-            }
-
             if (EventDatePicker.Date <= DateTime.Today)
             {
                 await DisplayAlert("Viga", "Palun vali tuleviku kuupäev.", "OK");
                 return;
             }
 
-            // Create a new Event object and fill in with data
-            newEvent = new Event // Change 'newEvent' to a class-level variable
+            if (string.IsNullOrWhiteSpace(EventPrice.Text) || !decimal.TryParse(EventPrice.Text, out decimal eventPrice))
             {
-                Name = NameEntry.Text,
-                Description = DescriptionEntry.Text,
-                EventDate = EventDatePicker.Date,
-                Price = eventPrice
-            };
+                await DisplayAlert("Viga", "Palun sisesta ürituse hind.", "OK");
+                return;
+            }
 
-            // Display student selection pop-up
-            await ShowStudentSelectionPopup();
+            // Update or create the Event object
+            if (_eventItem == null) // Create new event
+            {
+                newEvent = new Event
+                {
+                    Name = NameEntry.Text,
+                    Description = DescriptionEntry.Text,
+                    EventDate = EventDatePicker.Date,
+                    Price = eventPrice
+                };
+
+                // Display student selection pop-up
+                await ShowStudentSelectionPopup();
+            }
+            else // Update existing event
+            {
+                _eventItem.Name = NameEntry.Text;
+                _eventItem.Description = DescriptionEntry.Text;
+                _eventItem.EventDate = EventDatePicker.Date;
+                _eventItem.Price = eventPrice;
+
+                await _databaseContext.UpdateItemAsync(_eventItem);
+                await Navigation.PopAsync();
+            }
         }
 
         private async Task ShowStudentSelectionPopup()
@@ -86,7 +114,7 @@ namespace KlassiRahaHaldamine.Views.Events
                 if (selectedStudentsCount < (totalStudents / 2))
                 {
                     await DisplayAlert("Viga", "Peate valima vähemalt 50% õpilastest, kellele summat jagada.", "OK");
-                    return; 
+                    return;
                 }
 
                 // Divide the cost of the event between selected students
@@ -95,11 +123,26 @@ namespace KlassiRahaHaldamine.Views.Events
                 // Save data to database
                 await _databaseContext.AddItemAsync(newEvent);
 
+                //Save relationships between the event and selected students
+                await SaveEventStudents(newEvent.Id);
+
                 // Back to event list
-                await Navigation.PopAsync(); 
+                await Navigation.PopAsync();
             };
 
             await Navigation.PushModalAsync(popup);
+        }
+        private async Task SaveEventStudents(int eventId)
+        {
+            foreach (var student in studentList.Where(s => s.IsSelected))
+            {
+                var eventStudent = new EventStudent
+                {
+                    EventId = eventId,
+                    StudentId = student.Id
+                };
+                await _databaseContext.AddEventStudentAsync(eventStudent);
+            }
         }
 
         private async Task SplitEventCostAmongStudents(Event newEvent)
@@ -121,6 +164,19 @@ namespace KlassiRahaHaldamine.Views.Events
             {
                 student.Amount -= costPerStudent; // Subtract the amount from the student's account
                 await _databaseContext.UpdateItemAsync(student); // Update student data in database
+
+                // Check if the balance is negative and send a notification
+                if (student.Amount < 0 && !string.IsNullOrWhiteSpace(student.ContactEmail))
+                {
+                    var emailService = new EmailService();
+                    await emailService.SendEmailNotification(
+                        student.ContactEmail,
+                                        "Teade miinuses kontoseisu kohta",
+                        $"Lugupeetud {student.FirstName} {student.LastName} vanem, " +
+                        $"teie lapse klassi rahakassa konto saldo on miinuses. " +
+                        $"Konto jääk on praegu: {student.Amount:C}. Palun kandke raha juurde esimesel võimalusel."
+                    );
+                }
             }
         }
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:KlassiRahaHaldamine.Models"
+             x:Class="KlassiRahaHaldamine.Views.Students.StudentDetails"
+             Title="Õpilase detailid">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+
+        <Button 
+                Text="↩"
+                FontSize="Small"             
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Margin="0,0,0,30"
+                Clicked="OnBackToStudentsClicked"/>
+        
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Eesnimi:" FontAttributes="Bold" FontSize="22" />
+            <Label x:Name="FirstNameLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Perekonnanimi:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="LastNameLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Summa:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="AmountLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Kontakti nimi:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="ContactNameLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Kontakti e-post:" FontAttributes="Bold" FontSize="22" />
+            <Label x:Name="ContactEmailLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Kontakti telefon:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="ContactNumberLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <!-- Optionally add buttons for editing or deleting the student -->
+
+    </VerticalStackLayout>
+
+</ContentPage>

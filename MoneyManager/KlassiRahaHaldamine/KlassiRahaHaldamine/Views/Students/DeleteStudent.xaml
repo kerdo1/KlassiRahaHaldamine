@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KlassiRahaHaldamine.Views.Students.StudentDelete"
+             x:Class="KlassiRahaHaldamine.Views.Students.DeleteStudent"
              Title="Kustuta õpilane">
     <VerticalStackLayout Padding="20" Spacing="15">
-        <Button Grid.Column="0"
+        <Button 
                 Text="↩"
-                TextColor="#2D4D3A"
                 FontSize="Small"             
                 VerticalOptions="Start"
                 HorizontalOptions="Start"
@@ -32,12 +31,26 @@
 
         <Label Text="{Binding ContactName}"
                FontSize="Medium"
-               HorizontalOptions="Center" />    
+               HorizontalOptions="Center" />
+
+        <Label Text="{Binding ContactEmail}"
+               FontSize="Medium"
+               HorizontalOptions="Center" />
 
         <Label Text="{Binding ContactNumber}"
                FontSize="Medium"
                HorizontalOptions="Center" />
 
-        <Button Text="Kustuta" Clicked="OnConfirmDeleteClicked" BackgroundColor="Red" TextColor="White"/>
+        <Button Text="Kustuta" 
+                Clicked="OnConfirmDeleteClicked" 
+                BackgroundColor="{StaticResource PiggyRed}" 
+                TextColor="White">
+            <Button.Shadow>
+                <Shadow Brush="{StaticResource PiggyRed}"
+                Offset="3,3"
+                Radius="3"
+                Opacity="0.3"/>
+            </Button.Shadow>
+        </Button>
     </VerticalStackLayout>
 </ContentPage>

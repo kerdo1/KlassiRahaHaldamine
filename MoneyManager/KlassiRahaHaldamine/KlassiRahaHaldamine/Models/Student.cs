@@ -1,5 +1,4 @@
-﻿
-using SQLite;
+﻿using SQLite;
 
 namespace KlassiRahaHaldamine.Models
 {
@@ -12,6 +11,7 @@ namespace KlassiRahaHaldamine.Models
         public decimal Amount { get; set; }
         public string ContactName { get; set; }
         public string ContactNumber { get; set; }
+        public string ContactEmail { get; set; }
 
         public Student() { }
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KlassiRahaHaldamine.Views.Events.EventDetails"
+             Title="Ürituse detailid">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Button Grid.Column="0"
+                Margin="0,0,0,20"
+                Text="↩"
+                FontSize="Small"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnBackToEventsClicked"/>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Ürituse nimi:" FontAttributes="Bold" FontSize="22" />
+            <Label x:Name="EventNameLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Kuupäev:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="EventDateLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Kirjeldus:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="EventDescriptionLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Hind:" FontAttributes="Bold" FontSize="22"/>
+            <Label x:Name="EventPriceLabel" FontSize="22"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

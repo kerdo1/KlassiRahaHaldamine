@@ -1,8 +1,5 @@
+using KlassiRahaHaldamine.Models;
 using SQLite;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace KlassiRahaHaldamine.Data
 {
@@ -43,17 +40,20 @@ namespace KlassiRahaHaldamine.Data
         public async Task<bool> UpdateItemAsync<T>(T item) where T : class, new()
         {
             await CreateTableIfNotExistsAsync<T>();
-
             return await _connection.UpdateAsync(item) > 0;
+        }
+
+        public async Task<bool> AddEventStudentAsync(EventStudent eventStudent)
+        {
+            await CreateTableIfNotExistsAsync<EventStudent>();
+            return await _connection.InsertAsync(eventStudent) > 0;
+        }
+        public async Task<IEnumerable<EventStudent>> GetEventStudentsByEventIdAsync(int eventId)
+        {
+            await CreateTableIfNotExistsAsync<EventStudent>();
+            return await _connection.Table<EventStudent>().Where(es => es.EventId == eventId).ToListAsync();
         }
 
         public async ValueTask DisposeAsync() => await _connection.CloseAsync();
-
-        public async Task<bool> UpdateItemAsync<T>(T item) where T : class, new()
-        {
-            await CreateTableIfNotExistsAsync<T>();
-            return await _connection.UpdateAsync(item) > 0;
-        }
-
     }
 }

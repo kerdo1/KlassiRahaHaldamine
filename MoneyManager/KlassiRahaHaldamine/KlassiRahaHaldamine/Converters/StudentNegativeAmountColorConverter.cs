@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace KlassiRahaHaldamine.Converters
 {
@@ -13,7 +8,7 @@ namespace KlassiRahaHaldamine.Converters
         {
             if (value is decimal amount && amount <= 0)
             {
-                return Colors.Red;
+                return Colors.OrangeRed;
             }
             return null; 
         }
