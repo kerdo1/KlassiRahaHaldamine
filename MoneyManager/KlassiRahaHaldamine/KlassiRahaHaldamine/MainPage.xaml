@@ -3,13 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KlassiRahaHaldamine.MainPage"
              Title="">
+  
+        
+    
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Margin="0,50,0,0"
             Spacing="25">
-            <Image
+            <Grid>
+
+                <Image 
+                    x:Name="StickFigureImage1"
+                    Source="stickfigure.png"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    TranslationX="-120"
+                    TranslationY="500"
+                    WidthRequest="96"
+                    HeightRequest="96"/>
+
+                <Image
                 Source="piggy.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
@@ -21,7 +36,7 @@
                             Opacity="0.3"/>
                 </Image.Shadow>
             </Image>
-
+            </Grid>
             <Frame
                 x:Name="MoneyFrame"
                 BackgroundColor="#FDF3C3"

@@ -1,29 +1,50 @@
 using KlassiRahaHaldamine.Data;
 using KlassiRahaHaldamine.Models;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 
 namespace KlassiRahaHaldamine.Views.Students;
 
-public partial class CreateUpdateStudent : ContentPage
+public partial class CreateUpdateStudent : ContentPage, INotifyPropertyChanged
 {
+    private Student _studentItem;
+    private bool _isUpdating;
+
+    public bool IsUpdating
+    {
+        get => _isUpdating;
+        set
+        {
+            _isUpdating = value;
+            OnPropertyChanged(nameof(IsUpdating));
+        }
+    }
     public CreateUpdateStudent()
     {
         InitializeComponent();
-    }
+        BindingContext = this;
 
-    private Student _studentItem;
+        IsUpdating = false;  // Hides AddEntry
+        Title = "Lisa õpilane";
+    }
     public CreateUpdateStudent(Student studentItem)
     {
         InitializeComponent();
+        BindingContext = this;
         _studentItem = studentItem;
+
+        IsUpdating = _studentItem != null;
         Title = _studentItem == null ? "Lisa õpilane" : "Uuenda õpilane";
 
-        FirstNameEntry.Text = _studentItem.FirstName;
-        LastNameEntry.Text = _studentItem.LastName;
-        AmountEntry.Text = _studentItem.Amount.ToString("F2");
-        ContactNameEntry.Text = _studentItem.ContactName;
-        ContactEmailEntry.Text = _studentItem.ContactEmail;
-        ContactNumberEntry.Text = _studentItem.ContactNumber.ToString();
+        if (_studentItem != null)
+        {
+            FirstNameEntry.Text = _studentItem.FirstName;
+            LastNameEntry.Text = _studentItem.LastName;
+            AmountEntry.Text = _studentItem.Amount.ToString("F2");
+            ContactNameEntry.Text = _studentItem.ContactName;
+            ContactEmailEntry.Text = _studentItem.ContactEmail;
+            ContactNumberEntry.Text = _studentItem.ContactNumber.ToString();
+        }
     }
     private async void OnBackToStudentsClicked(object sender, EventArgs e)
     {
@@ -69,6 +90,7 @@ public partial class CreateUpdateStudent : ContentPage
         }
 
         decimal.TryParse(AmountEntry.Text, out decimal amount);
+        decimal.TryParse(AddEntry.Text, out decimal addAmount);
         int.TryParse(ContactNumberEntry.Text, out int contactNumber);
 
         var databaseContext = new DatabaseContext();
@@ -93,7 +115,7 @@ public partial class CreateUpdateStudent : ContentPage
             // Update existing student
             _studentItem.FirstName = FirstNameEntry.Text;
             _studentItem.LastName = LastNameEntry.Text;
-            _studentItem.Amount = amount;
+            _studentItem.Amount = Decimal.Add(amount, addAmount);
             _studentItem.ContactName = ContactNameEntry.Text;
             _studentItem.ContactEmail = ContactEmailEntry.Text;
             _studentItem.ContactNumber = contactNumber.ToString();
@@ -109,6 +131,13 @@ public partial class CreateUpdateStudent : ContentPage
         // A regular expression that corresponds to the standard email address format
         string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
         return Regex.IsMatch(email, emailPattern);
+    }
+
+    // INotifyPropertyChanged implementation to update UI when property changes
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 

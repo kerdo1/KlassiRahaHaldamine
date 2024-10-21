@@ -14,6 +14,25 @@ namespace KlassiRahaHaldamine
         {
             InitializeComponent();
             _databaseContext = new DatabaseContext();
+
+            StartImageRotation();
+        }
+        private async void StartImageRotation()
+        {
+            
+                while (true)
+                {
+                    // Rotate and move StickFigureImage1
+                    var rotationTask1 = StickFigureImage1.RotateTo(360, 2000); // Rotate 360 degrees in 2 seconds
+                    var moveTask1 = StickFigureImage1.TranslateTo(200, 0, 2000); // Move to the right by 100 units in 2 seconds
+
+                    await Task.WhenAll(rotationTask1, moveTask1); // Wait for both rotation and movement to complete
+
+                    StickFigureImage1.Rotation = 0; // Reset rotation
+                    await StickFigureImage1.TranslateTo(-250, 0, 0); // Reset position to original (left)
+
+                }
+            
         }
 
         protected override async void OnAppearing()
