@@ -44,7 +44,8 @@
         <Button Text="Kustuta" 
                 Clicked="OnConfirmDeleteClicked" 
                 BackgroundColor="{StaticResource PiggyRed}" 
-                TextColor="White">
+                TextColor="White"
+                Style="{StaticResource ButtonStyle}">
             <Button.Shadow>
                 <Shadow Brush="{StaticResource PiggyRed}"
                 Offset="3,3"
