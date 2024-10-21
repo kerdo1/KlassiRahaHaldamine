@@ -17,28 +17,28 @@
                 Clicked="OnBackToStudentsClicked"/>
         
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Eesnimi:" FontAttributes="Bold" FontSize="22" />
-            <Label x:Name="FirstNameLabel" FontSize="22"/>
+            <Label Text="Eesnimi:" FontAttributes="Bold" FontSize="Micro" />
+            <Label x:Name="FirstNameLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Perekonnanimi:" FontAttributes="Bold" FontSize="22"/>
-            <Label x:Name="LastNameLabel" FontSize="22"/>
+            <Label Text="Perekonnanimi:" FontAttributes="Bold" FontSize="Micro"/>
+            <Label x:Name="LastNameLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Summa:" FontAttributes="Bold" FontSize="22"/>
-            <Label x:Name="AmountLabel" FontSize="22"/>
+            <Label Text="Summa:" FontAttributes="Bold" FontSize="Micro"/>
+            <Label x:Name="AmountLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Kontakti nimi:" FontAttributes="Bold" FontSize="22"/>
-            <Label x:Name="ContactNameLabel" FontSize="22"/>
+            <Label Text="Kontakti nimi:" FontAttributes="Bold" FontSize="Micro"/>
+            <Label x:Name="ContactNameLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Kontakti e-post:" FontAttributes="Bold" FontSize="22" />
-            <Label x:Name="ContactEmailLabel" FontSize="22"/>
+            <Label Text="Kontakti e-post:" FontAttributes="Bold" FontSize="Micro" />
+            <Label x:Name="ContactEmailLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Kontakti telefon:" FontAttributes="Bold" FontSize="22"/>
-            <Label x:Name="ContactNumberLabel" FontSize="22"/>
+            <Label Text="Kontakti telefon:" FontAttributes="Bold" FontSize="Micro"/>
+            <Label x:Name="ContactNumberLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
         <!-- Optionally add buttons for editing or deleting the student -->
 

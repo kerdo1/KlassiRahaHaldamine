@@ -14,20 +14,20 @@
                 HorizontalOptions="Start"
                 Clicked="OnBackToEventsClicked"/>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Ürituse nimi:" FontAttributes="Bold" FontSize="22" />
-            <Label x:Name="EventNameLabel" FontSize="22"/>
+            <Label Text="Ürituse nimi:" FontAttributes="Bold" FontSize="Micro" />
+            <Label x:Name="EventNameLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Kuupäev:" FontAttributes="Bold" FontSize="22"/>
-            <Label x:Name="EventDateLabel" FontSize="22"/>
+            <Label Text="Kuupäev:" FontAttributes="Bold" FontSize="Micro"/>
+            <Label x:Name="EventDateLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
+        <VerticalStackLayout Spacing="10">
+            <Label Text="Kirjeldus:" FontAttributes="Bold" FontSize="Micro"/>
+            <Label x:Name="EventDescriptionLabel" FontSize="Micro"/>
+        </VerticalStackLayout>
         <HorizontalStackLayout Spacing="10">
-            <Label Text="Kirjeldus:" FontAttributes="Bold" FontSize="22"/>
-            <Label x:Name="EventDescriptionLabel" FontSize="22"/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Spacing="10">
-            <Label Text="Hind:" FontAttributes="Bold" FontSize="22"/>
-            <Label x:Name="EventPriceLabel" FontSize="22"/>
+            <Label Text="Hind:" FontAttributes="Bold" FontSize="Micro"/>
+            <Label x:Name="EventPriceLabel" FontSize="Micro"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 
