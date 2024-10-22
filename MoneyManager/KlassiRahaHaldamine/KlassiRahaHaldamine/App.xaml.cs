@@ -16,8 +16,7 @@ namespace KlassiRahaHaldamine
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage()); // Ensure a NavigationPage is used
-            Application.Current.UserAppTheme = AppTheme.Light;
+
 
 #if WINDOWS
         Microsoft.Maui.Handlers.WindowHandler.Mapper.AppendToMapping(nameof(IWindow), (handler, view) =>
