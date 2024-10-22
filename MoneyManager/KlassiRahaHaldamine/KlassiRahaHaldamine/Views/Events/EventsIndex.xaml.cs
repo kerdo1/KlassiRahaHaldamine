@@ -50,13 +50,15 @@ namespace KlassiRahaHaldamine.Views.Events
             LoadEvents(); // Refreshes the event list every time the page appears
         }
 
-        private async void OnDetailsClicked(object sender, EventArgs e)
+        private async void OnRowTapped(object sender, EventArgs e)
         {
-            var button = (Button)sender;
-            var eventItem = (Event)button.CommandParameter; // Get the selected event object
+            var grid = sender as Grid;
+            var occasion = grid?.BindingContext as Event;
 
-            // Navigate to the EventDetailsPage and pass the event object
-            await Navigation.PushAsync(new EventDetails(eventItem));
+            if (occasion != null)
+            {
+                await Navigation.PushAsync(new EventDetails(occasion));
+            }
         }
 
         private async void OnEditClicked(object sender, EventArgs e)

@@ -12,9 +12,9 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="30">
+        <VerticalStackLayout Padding="0" Spacing="30">
 
-            <Grid>
+            <Grid Padding="20">
                 <Button Grid.Column="0"
                         Text="↩"
                         FontSize="Small"
@@ -31,7 +31,6 @@
                         Clicked="OnCreateStudentClicked" />
             </Grid>
 
-            <!-- CollectionView for students -->
             <CollectionView 
                 x:Name="StudentsCollectionView"
                 ItemsSource="{Binding Students}"
@@ -40,7 +39,26 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0,0,0,10" ColumnSpacing="20">
+                        <Grid Padding="20, 5, 20, 5" Margin="0" ColumnSpacing="20">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#FEFFAD"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnRowTapped"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -62,14 +80,12 @@
                                            TextColor="{Binding Amount, Converter={StaticResource StudentNegativeAmountColorConverter}}"/>
                                 </Frame>
                                 <Label Text="{Binding FirstName}" 
-
                                        FontAttributes="Bold" 
                                        FontSize="Micro" 
                                        VerticalOptions="Center" 
                                        HorizontalOptions="Start"/>
 
                                 <Label Text="{Binding LastName}" 
-
                                        FontAttributes="Bold" 
                                        FontSize="Micro" 
                                        VerticalOptions="Center" 
@@ -77,12 +93,6 @@
                             </StackLayout>
 
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-                                <Button Text="?" 
-                                        FontSize="Medium"
-                                        CornerRadius="4" 
-                                        Padding="10,3"
-                                        Clicked="OnDetailsClicked"
-                                        CommandParameter="{Binding .}" />
                                 <Button Text="✏️"                                    
                                         CornerRadius="4" 
                                         Padding="5,3"
