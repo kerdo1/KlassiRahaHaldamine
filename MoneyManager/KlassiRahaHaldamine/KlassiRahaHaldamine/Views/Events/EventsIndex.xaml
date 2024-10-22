@@ -13,8 +13,9 @@
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="30">
-            <Grid>
+        <VerticalStackLayout Padding="0" Spacing="30">
+
+            <Grid Padding="20">
                 <Button Grid.Column="0"
                         Text="↩"
                         FontSize="Small"
@@ -30,18 +31,42 @@
                         HorizontalOptions="End"
                         Clicked="OnCreateEventClicked" />
             </Grid>
-            <CollectionView x:Name="EventsCollectionView"
-                            ItemsSource="{Binding Events}"
-                            SelectionMode="None"
-                            EmptyView="Üritusi ei ole.">
+
+            <CollectionView 
+            x:Name="StudentsCollectionView"
+            ItemsSource="{Binding Events}"
+            SelectionMode="None"
+            EmptyView="Õpilasi ei ole.">
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0,0,0,10" ColumnSpacing="20">
+                        <Grid Padding="20, 5, 20, 5" Margin="0" ColumnSpacing="20">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#FEFFAD"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                Tapped="OnRowTapped"
+                                CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" >
+
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="Start" VerticalOptions="End">
                                 <Frame x:Name="WalletFrame"                                 
                                        BorderColor="{StaticResource HunterGreen}"
                                        CornerRadius="4"
@@ -54,23 +79,14 @@
                                            HorizontalOptions="End"
                                            VerticalOptions="Center" />
                                 </Frame>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" Grid.Column="0" Spacing="10" HorizontalOptions="End" >
                                 <Label Text="{Binding Name}" 
                                        FontAttributes="Bold" 
                                        FontSize="Small" 
                                        VerticalOptions="Center"
                                        TextColor="{Binding EventDate, Converter={StaticResource EventDateToColorConverter}}" />
                             </StackLayout>
+
                             <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-
-                                <Button Text="?"
-                                        FontSize="Medium"
-                                        CornerRadius="4"
-                                        Padding="10,3"
-                                        Clicked="OnDetailsClicked" 
-                                        CommandParameter="{Binding .}" />  
-
                                 <Button Text="✏️"
                                         CornerRadius="4"
                                         Padding="5,3"
